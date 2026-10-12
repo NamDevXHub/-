@@ -1,335 +1,551 @@
 -- ═══════════════════════════════════════════════════════════
---   DỊCH CHỮ ROBLOX SANG TIẾNG VIỆT - FULL
---   Đặt trong: StarterPlayer > StarterPlayerScripts (LocalScript)
---   KHÔNG CẦN HTTP REQUESTS!
+--   DỊCH CHỮ ROBLOX SANG TIẾNG VIỆT - KHÔNG CẦN HTTP
+--   Từ điển ~5000 từ
 -- ═══════════════════════════════════════════════════════════
 
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-
--- ═══════════════════════════════════════════════════════════
---   TỪ ĐIỂN
--- ═══════════════════════════════════════════════════════════
 local TD = {
--- UI
+-- ═══ UI CƠ BẢN ═══
 ["Play"]="Chơi",["Start"]="Bắt đầu",["Stop"]="Dừng",["Pause"]="Tạm dừng",["Resume"]="Tiếp tục",
 ["Restart"]="Chơi lại",["Exit"]="Thoát",["Quit"]="Thoát",["Close"]="Đóng",["Open"]="Mở",
 ["Back"]="Quay lại",["Next"]="Tiếp",["Previous"]="Trước",["Continue"]="Tiếp tục",
 ["Cancel"]="Hủy",["Confirm"]="Xác nhận",["Yes"]="Có",["No"]="Không",["OK"]="Đồng ý",
-["Save"]="Lưu",["Load"]="Tải",["Delete"]="Xóa",["Edit"]="Sửa",["Apply"]="Áp dụng",
-["Reset"]="Đặt lại",["Submit"]="Gửi",["Send"]="Gửi",["Skip"]="Bỏ qua",["Retry"]="Thử lại",
-["Refresh"]="Làm mới",["Update"]="Cập nhật",["Download"]="Tải xuống",["Upload"]="Tải lên",
-["Share"]="Chia sẻ",["Copy"]="Sao chép",["Paste"]="Dán",["Cut"]="Cắt",["Select"]="Chọn",
-["Search"]="Tìm kiếm",["Filter"]="Lọc",["Sort"]="Sắp xếp",["View"]="Xem",["Hide"]="Ẩn",
-["Show"]="Hiện",["New"]="Mới",["Create"]="Tạo",["Add"]="Thêm",["Remove"]="Xóa",
-["Insert"]="Chèn",["Rename"]="Đổi tên",["Move"]="Di chuyển",["Equip"]="Trang bị",
-["Unequip"]="Tháo",["Use"]="Sử dụng",["Buy"]="Mua",["Sell"]="Bán",["Trade"]="Trao đổi",
-["Give"]="Cho",["Take"]="Lấy",["Drop"]="Bỏ",["Craft"]="Chế tạo",["Repair"]="Sửa chữa",
--- Menu
-["Menu"]="Menu",["Main Menu"]="Menu chính",["Settings"]="Cài đặt",["Options"]="Tùy chọn",
-["Config"]="Cấu hình",["Help"]="Trợ giúp",["Support"]="Hỗ trợ",["About"]="Giới thiệu",
+["Okay"]="Được",["Alright"]="Được",["Save"]="Lưu",["Load"]="Tải",["Delete"]="Xóa",
+["Edit"]="Sửa",["Apply"]="Áp dụng",["Reset"]="Đặt lại",["Submit"]="Gửi",["Send"]="Gửi",
+["Skip"]="Bỏ qua",["Retry"]="Thử lại",["Refresh"]="Làm mới",["Update"]="Cập nhật",
+["Download"]="Tải xuống",["Upload"]="Tải lên",["Share"]="Chia sẻ",["Copy"]="Sao chép",
+["Paste"]="Dán",["Cut"]="Cắt",["Select"]="Chọn",["Deselect"]="Bỏ chọn",["Search"]="Tìm kiếm",
+["Find"]="Tìm",["Filter"]="Lọc",["Sort"]="Sắp xếp",["View"]="Xem",["Hide"]="Ẩn",
+["Show"]="Hiện",["Expand"]="Mở rộng",["Collapse"]="Thu gọn",["Minimize"]="Thu nhỏ",
+["Maximize"]="Phóng to",["Fullscreen"]="Toàn màn hình",["Zoom In"]="Phóng to",
+["Zoom Out"]="Thu nhỏ",["Print"]="In",["Export"]="Xuất",["Import"]="Nhập",["New"]="Mới",
+["Create"]="Tạo",["Add"]="Thêm",["Remove"]="Xóa",["Insert"]="Chèn",["Duplicate"]="Nhân bản",
+["Rename"]="Đổi tên",["Move"]="Di chuyển",["Drag"]="Kéo",["Drop"]="Thả",["Click"]="Nhấn",
+["Tap"]="Chạm",["Press"]="Nhấn",["Hold"]="Giữ",["Release"]="Nhả",["Toggle"]="Bật/tắt",
+["Switch"]="Chuyển",["Turn On"]="Bật",["Turn Off"]="Tắt",["Checkout"]="Thanh toán",
+["Register"]="Đăng ký",["Subscribe"]="Đăng ký",["Follow"]="Theo dõi",["Like"]="Thích",
+["Dislike"]="Không thích",["Rate"]="Đánh giá",["Review"]="Đánh giá",["Comment"]="Bình luận",
+["Report"]="Báo cáo",["Block"]="Chặn",["Unblock"]="Bỏ chặn",["Mute"]="Tắt tiếng",
+["Unmute"]="Bật tiếng",["Invite"]="Mời",["Kick"]="Đá",["Ban"]="Cấm",["Warn"]="Cảnh cáo",
+["Equip"]="Trang bị",["Unequip"]="Tháo",["Use"]="Sử dụng",["Buy"]="Mua",["Sell"]="Bán",
+["Trade"]="Trao đổi",["Give"]="Cho",["Take"]="Lấy",["Drop"]="Bỏ",["Craft"]="Chế tạo",
+["Repair"]="Sửa chữa",["Spawn"]="Triệu hồi",["Teleport"]="Dịch chuyển",["Warp"]="Dịch chuyển",
+-- ═══ MENU ═══
+["Menu"]="Menu",["Main Menu"]="Menu chính",["Settings"]="Cài đặt",["Setting"]="Cài đặt",
+["Options"]="Tùy chọn",["Option"]="Tùy chọn",["Preferences"]="Sở thích",["Config"]="Cấu hình",
+["Configuration"]="Cấu hình",["Help"]="Trợ giúp",["Support"]="Hỗ trợ",["About"]="Giới thiệu",
 ["Contact"]="Liên hệ",["Info"]="Thông tin",["Information"]="Thông tin",["Details"]="Chi tiết",
-["Description"]="Mô tả",["Tutorial"]="Hướng dẫn",["Guide"]="Hướng dẫn",["Profile"]="Hồ sơ",
-["Account"]="Tài khoản",["Login"]="Đăng nhập",["Logout"]="Đăng xuất",["Sign In"]="Đăng nhập",
-["Sign Up"]="Đăng ký",["Register"]="Đăng ký",["Username"]="Tên đăng nhập",
+["Description"]="Mô tả",["Tutorial"]="Hướng dẫn",["Guide"]="Hướng dẫn",["Manual"]="Hướng dẫn",
+["Profile"]="Hồ sơ",["Account"]="Tài khoản",["Login"]="Đăng nhập",["Logout"]="Đăng xuất",
+["Sign In"]="Đăng nhập",["Sign Up"]="Đăng ký",["Sign Out"]="Đăng xuất",["Username"]="Tên đăng nhập",
 ["Password"]="Mật khẩu",["Email"]="Email",["Name"]="Tên",["Nickname"]="Biệt danh",
-["Avatar"]="Ảnh đại diện",["Status"]="Trạng thái",["Gender"]="Giới tính",["Male"]="Nam",
-["Female"]="Nữ",["Other"]="Khác",["Age"]="Tuổi",["Birthday"]="Sinh nhật",
--- Game
+["Full Name"]="Họ tên",["First Name"]="Tên",["Last Name"]="Họ",["Avatar"]="Ảnh đại diện",
+["Bio"]="Tiểu sử",["Status"]="Trạng thái",["Gender"]="Giới tính",["Male"]="Nam",
+["Female"]="Nữ",["Other"]="Khác",["Age"]="Tuổi",["Birthday"]="Sinh nhật",["Country"]="Quốc gia",
+["City"]="Thành phố",["Address"]="Địa chỉ",["Phone"]="Điện thoại",["Notification"]="Thông báo",
+["Notifications"]="Thông báo",["Alert"]="Cảnh báo",["Warning"]="Cảnh báo",["Error"]="Lỗi",
+["Errors"]="Lỗi",["Notice"]="Thông báo",["Announcement"]="Thông cáo",["Message"]="Tin nhắn",
+["Messages"]="Tin nhắn",["Inbox"]="Hộp thư",["Outbox"]="Thư đi",["Forum"]="Diễn đàn",
+["Thread"]="Chủ đề",["Post"]="Bài viết",["Posts"]="Bài viết",["Reply"]="Trả lời",
+-- ═══ GAME ═══
 ["Game"]="Trò chơi",["Games"]="Trò chơi",["Player"]="Người chơi",["Players"]="Người chơi",
 ["User"]="Người dùng",["Users"]="Người dùng",["Guest"]="Khách",["Host"]="Chủ phòng",
-["Enemy"]="Kẻ địch",["Enemies"]="Kẻ địch",["Opponent"]="Đối thủ",["Rival"]="Đối thủ",
-["Boss"]="Trùm",["Mini Boss"]="Trùm nhỏ",["Monster"]="Quái vật",["Mob"]="Quái",
-["Creature"]="Sinh vật",["Beast"]="Dã thú",["Animal"]="Động vật",["NPC"]="NPC",
-["Friend"]="Bạn",["Friends"]="Bạn bè",["Best Friend"]="Bạn thân",["Team"]="Đội",
-["Teammate"]="Đồng đội",["Guild"]="Bang hội",["Clan"]="Bang",["Party"]="Nhóm",
-["Group"]="Nhóm",["Squad"]="Tiểu đội",["Alliance"]="Liên minh",["Ally"]="Đồng minh",
+["Enemy"]="Kẻ địch",["Enemies"]="Kẻ địch",["Foe"]="Địch",["Opponent"]="Đối thủ",
+["Rival"]="Đối thủ",["Boss"]="Trùm",["Mini Boss"]="Trùm nhỏ",["Monster"]="Quái vật",
+["Mob"]="Quái",["Creature"]="Sinh vật",["Beast"]="Dã thú",["Animal"]="Động vật",
+["NPC"]="NPC",["Friend"]="Bạn",["Friends"]="Bạn bè",["Buddy"]="Bạn thân",
+["Best Friend"]="Bạn thân",["Team"]="Đội",["Teammate"]="Đồng đội",["Guild"]="Bang hội",
+["Clan"]="Bang",["Party"]="Nhóm",["Group"]="Nhóm",["Squad"]="Tiểu đội",["Alliance"]="Liên minh",
+["Ally"]="Đồng minh",["Allies"]="Đồng minh",["Neutral"]="Trung lập",["Spectator"]="Khán giả",
 ["Owner"]="Chủ sở hữu",["Admin"]="Quản trị viên",["Moderator"]="Người điều hành",
 ["Mod"]="Quản trò",["Staff"]="Nhân viên",["Member"]="Thành viên",["Leader"]="Trưởng nhóm",
 ["Captain"]="Đội trưởng",["Master"]="Sư phụ",["Pupil"]="Học trò",["Student"]="Học sinh",
-["Teacher"]="Giáo viên",["Mentor"]="Người hướng dẫn",["Beginner"]="Người mới",
-["Novice"]="Tân binh",["Rookie"]="Tân binh",["Intermediate"]="Trung cấp",
-["Expert"]="Chuyên gia",["Pro"]="Chuyên nghiệp",["Veteran"]="Lão làng",
-["Legend"]="Huyền thoại",["Legendary"]="Huyền thoại",["Myth"]="Thần thoại",
-["Hero"]="Anh hùng",["Villain"]="Ác nhân",["Champion"]="Nhà vô địch",
-["Winner"]="Người thắng",["Loser"]="Người thua",
--- Chiến đấu
-["Health"]="Máu",["HP"]="Máu",["Max HP"]="Máu tối đa",["Mana"]="Năng lượng",
-["MP"]="Năng lượng",["Stamina"]="Thể lực",["Energy"]="Năng lượng",["Vitality"]="Sinh lực",
-["Life"]="Mạng",["Lives"]="Mạng",["Damage"]="Sát thương",["DPS"]="Sát thương/giây",
-["Attack"]="Tấn công",["Defense"]="Phòng thủ",["Defence"]="Phòng thủ",["Armor"]="Giáp",
-["Resistance"]="Kháng",["Speed"]="Tốc độ",["Attack Speed"]="Tốc độ đánh",
+["Teacher"]="Giáo viên",["Mentor"]="Người hướng dẫn",["Apprentice"]="Học việc",
+["Beginner"]="Người mới",["Novice"]="Tân binh",["Rookie"]="Tân binh",["Intermediate"]="Trung cấp",
+["Expert"]="Chuyên gia",["Professional"]="Chuyên nghiệp",["Pro"]="Chuyên nghiệp",
+["Veteran"]="Lão làng",["Grandmaster"]="Đại sư",["Legend"]="Huyền thoại",
+["Legendary"]="Huyền thoại",["Myth"]="Thần thoại",["Hero"]="Anh hùng",["Heroine"]="Nữ anh hùng",
+["Villain"]="Ác nhân",["Champion"]="Nhà vô địch",["Winner"]="Người thắng",
+["Loser"]="Người thua",["Nemesis"]="Kẻ thù truyền kiếp",["Rookie"]="Tân binh",
+["Amateur"]="Nghiệp dư",["Semi-Pro"]="Bán chuyên",["Elite"]="Tinh hoa",
+-- ═══ CHIẾN ĐẤU ═══
+["Health"]="Máu",["HP"]="Máu",["Max HP"]="Máu tối đa",["Current HP"]="Máu hiện tại",
+["Mana"]="Năng lượng",["MP"]="Năng lượng",["Max MP"]="Năng lượng tối đa",
+["Stamina"]="Thể lực",["Energy"]="Năng lượng",["Vitality"]="Sinh lực",["Life"]="Mạng",
+["Lives"]="Mạng",["Damage"]="Sát thương",["DPS"]="Sát thương/giây",["Attack"]="Tấn công",
+["Attacks"]="Đòn tấn công",["Defense"]="Phòng thủ",["Defence"]="Phòng thủ",["Armor"]="Giáp",
+["Armour"]="Giáp",["Resistance"]="Kháng",["Speed"]="Tốc độ",["Attack Speed"]="Tốc độ đánh",
 ["Movement Speed"]="Tốc độ di chuyển",["Power"]="Sức mạnh",["Strength"]="Sức mạnh",
-["Agility"]="Nhanh nhẹn",["Luck"]="May mắn",["Intelligence"]="Trí tuệ",
-["Wisdom"]="Khôn ngoan",["Dexterity"]="Khéo léo",["Accuracy"]="Độ chính xác",
-["Critical"]="Chí mạng",["Crit"]="Chí mạng",["Crit Chance"]="Tỉ lệ chí mạng",
-["Crit Damage"]="Sát thương chí mạng",["Block"]="Chặn",["Dodge"]="Né",
-["Evade"]="Né tránh",["Parry"]="Đỡ đòn",["Counter"]="Phản đòn",
+["Agility"]="Nhanh nhẹn",["Luck"]="May mắn",["Intelligence"]="Trí tuệ",["Wisdom"]="Khôn ngoan",
+["Dexterity"]="Khéo léo",["Accuracy"]="Độ chính xác",["Critical"]="Chí mạng",["Crit"]="Chí mạng",
+["Crit Chance"]="Tỉ lệ chí mạng",["Crit Damage"]="Sát thương chí mạng",["Block"]="Chặn",
+["Dodge"]="Né",["Evade"]="Né tránh",["Parry"]="Đỡ đòn",["Counter"]="Phản đòn",
 ["Reflect"]="Phản sát thương",["Hit"]="Đánh trúng",["Miss"]="Trượt",["Kill"]="Giết",
-["Kills"]="Mạng giết",["Death"]="Chết",["Deaths"]="Số lần chết",["Die"]="Chết",
-["Dead"]="Đã chết",["Alive"]="Còn sống",["Respawn"]="Hồi sinh",["Revive"]="Hồi sinh",
-["Reborn"]="Tái sinh",["Heal"]="Hồi máu",["Healing"]="Hồi máu",["Regen"]="Hồi phục",
+["Kills"]="Mạng giết",["Killed"]="Đã giết",["Death"]="Chết",["Deaths"]="Số lần chết",
+["Die"]="Chết",["Dead"]="Đã chết",["Alive"]="Còn sống",["Respawn"]="Hồi sinh",
+["Revive"]="Hồi sinh",["Reborn"]="Tái sinh",["Heal"]="Hồi máu",["Healing"]="Hồi máu",
+["Regen"]="Hồi phục",["Regenerate"]="Hồi phục",["Restore"]="Khôi phục",["Recover"]="Hồi phục",
 ["Buff"]="Tăng cường",["Debuff"]="Suy yếu",["Effect"]="Hiệu ứng",["Effects"]="Hiệu ứng",
-["Skill"]="Kỹ năng",["Skills"]="Kỹ năng",["Ability"]="Khả năng",["Abilities"]="Khả năng",
-["Talent"]="Tài năng",["Spell"]="Phép",["Magic"]="Phép thuật",["Ultimate"]="Tuyệt kỹ",
-["Special"]="Đặc biệt",["Passive"]="Bị động",["Active"]="Chủ động",["Range"]="Tầm",
-["Melee"]="Cận chiến",["Ranged"]="Tầm xa",["Cooldown"]="Hồi chiêu",["Cast"]="Niệm",
+["Status Effect"]="Hiệu ứng trạng thái",["Skill"]="Kỹ năng",["Skills"]="Kỹ năng",
+["Ability"]="Khả năng",["Abilities"]="Khả năng",["Talent"]="Tài năng",["Talents"]="Tài năng",
+["Spell"]="Phép",["Magic"]="Phép thuật",["Ultimate"]="Tuyệt kỹ",["Special"]="Đặc biệt",
+["Passive"]="Bị động",["Active"]="Chủ động",["Range"]="Tầm",["Melee"]="Cận chiến",
+["Ranged"]="Tầm xa",["Cooldown"]="Hồi chiêu",["Cast"]="Niệm",["Channel"]="Kênh",
 ["Combo"]="Chuỗi đòn",["Streak"]="Chuỗi",["Killstreak"]="Chuỗi hạ gục",
-["Headshot"]="Bắn đầu",["Assist"]="Hỗ trợ",["K/D"]="Tỉ lệ giết/chết",
--- Cấp độ
-["Level"]="Cấp độ",["Lv"]="Cấp",["Lvl"]="Cấp",["Level Up"]="Lên cấp",
-["Max Level"]="Cấp tối đa",["XP"]="Kinh nghiệm",["Exp"]="Kinh nghiệm",
-["Experience"]="Kinh nghiệm",["Rank"]="Hạng",["Ranking"]="Xếp hạng",
-["Leaderboard"]="Bảng xếp hạng",["Score"]="Điểm",["Points"]="Điểm",
-["Scoreboard"]="Bảng điểm",["Tier"]="Bậc",["Grade"]="Hạng",["Class"]="Lớp",
-["Stat"]="Chỉ số",["Stats"]="Chỉ số",["Statistics"]="Thống kê",["Progress"]="Tiến độ",
+["Headshot"]="Bắn đầu",["Assist"]="Hỗ trợ",["Assists"]="Hỗ trợ",
+["Damage Dealt"]="Sát thương gây ra",["Damage Taken"]="Sát thương nhận",
+["K/D"]="Tỉ lệ giết/chết",["KDR"]="Tỉ lệ giết/chết",
+-- ═══ CẤP ĐỘ ═══
+["Level"]="Cấp độ",["Lv"]="Cấp",["Lvl"]="Cấp",["Level Up"]="Lên cấp",["Levelup"]="Lên cấp",
+["Max Level"]="Cấp tối đa",["Min Level"]="Cấp tối thiểu",["XP"]="Kinh nghiệm",
+["Exp"]="Kinh nghiệm",["Experience"]="Kinh nghiệm",["XP Bar"]="Thanh kinh nghiệm",
+["Rank"]="Hạng",["Ranks"]="Hạng",["Ranking"]="Xếp hạng",["Leaderboard"]="Bảng xếp hạng",
+["Score"]="Điểm",["Points"]="Điểm",["Point"]="Điểm",["Scoreboard"]="Bảng điểm",
+["Tier"]="Bậc",["Grade"]="Hạng",["Class"]="Lớp",["Stat"]="Chỉ số",["Stats"]="Chỉ số",
+["Statistic"]="Thống kê",["Statistics"]="Thống kê",["Progress"]="Tiến độ",
 ["Achievement"]="Thành tựu",["Achievements"]="Thành tựu",["Trophy"]="Cúp",
-["Medal"]="Huy chương",["Badge"]="Huy hiệu",["Title"]="Danh hiệu",
+["Trophies"]="Cúp",["Medal"]="Huy chương",["Medals"]="Huy chương",["Badge"]="Huy hiệu",
+["Badges"]="Huy hiệu",["Title"]="Danh hiệu",["Titles"]="Danh hiệu",
 ["Reputation"]="Danh tiếng",["Fame"]="Nổi tiếng",["Glory"]="Vinh quang",
-["Honor"]="Vinh dự",["Prestige"]="Uy tín",["Unlock"]="Mở khóa",["Locked"]="Đã khóa",
+["Honor"]="Danh dự",["Prestige"]="Uy tín",["Milestone"]="Cột mốc",
+["Unlock"]="Mở khóa",["Unlocked"]="Đã mở",["Lock"]="Khóa",["Locked"]="Đã khóa",
 ["Owned"]="Đã sở hữu",["Maxed"]="Tối đa",["Mastered"]="Thành thạo",
--- Tiền tệ
+["Learned"]="Đã học",["Learnt"]="Đã học",["Trained"]="Đã luyện",
+["Ascend"]="Thăng cấp",["Ascension"]="Thăng cấp",["Prestige Level"]="Cấp uy tín",
+["Star"]="Sao",["Stars"]="Sao",["Rank Up"]="Tăng hạng",["Rating"]="Xếp hạng",
+["MMR"]="Điểm kỹ năng",["ELO"]="Điểm ELO",["Wins"]="Trận thắng",
+["Losses"]="Trận thua",["Win Rate"]="Tỉ lệ thắng",["Match"]="Trận đấu",
+["Round"]="Vòng",["Stage"]="Màn",["Wave"]="Đợt",["Floor"]="Tầng",
+["Chapter"]="Chương",["Act"]="Hồi",["Scene"]="Cảnh",["Section"]="Phần",
+["Segment"]="Đoạn",["Part"]="Phần",["Step"]="Bước",["Phase"]="Giai đoạn",
+-- ═══ TIỀN TỆ ═══
 ["Gold"]="Vàng",["Coins"]="Xu",["Coin"]="Xu",["Money"]="Tiền",["Cash"]="Tiền mặt",
 ["Gem"]="Đá quý",["Gems"]="Đá quý",["Diamond"]="Kim cương",["Diamonds"]="Kim cương",
-["Crystal"]="Pha lê",["Ruby"]="Hồng ngọc",["Emerald"]="Ngọc lục bảo",
-["Sapphire"]="Lam ngọc",["Token"]="Xu",["Tokens"]="Xu",["Ticket"]="Vé",
-["Tickets"]="Vé",["Currency"]="Tiền tệ",["Balance"]="Số dư",["Wallet"]="Ví",
-["Price"]="Giá",["Cost"]="Giá",["Value"]="Giá trị",["Total"]="Tổng",
-["Discount"]="Giảm giá",["Sale"]="Khuyến mãi",["Free"]="Miễn phí",["Premium"]="Cao cấp",
-["VIP"]="VIP",["Robux"]="Robux",["Purchase"]="Mua",["Refund"]="Hoàn tiền",
-["Bank"]="Ngân hàng",["Deposit"]="Gửi",["Withdraw"]="Rút",["Salary"]="Lương",
-["Bonus"]="Thưởng",["Reward"]="Phần thưởng",["Rewards"]="Phần thưởng",
--- Shop
+["Crystal"]="Pha lê",["Crystals"]="Pha lê",["Ruby"]="Hồng ngọc",["Rubies"]="Hồng ngọc",
+["Emerald"]="Ngọc lục bảo",["Sapphire"]="Lam ngọc",["Amethyst"]="Thạch anh tím",
+["Topaz"]="Hoàng ngọc",["Jade"]="Ngọc bích",["Pearl"]="Ngọc trai",
+["Token"]="Xu",["Tokens"]="Xu",["Ticket"]="Vé",["Tickets"]="Vé",
+["Coupon"]="Phiếu",["Voucher"]="Phiếu",["Currency"]="Tiền tệ",
+["Balance"]="Số dư",["Wallet"]="Ví",["Purse"]="Ví tiền",
+["Price"]="Giá",["Cost"]="Giá",["Value"]="Giá trị",["Worth"]="Giá trị",
+["Total"]="Tổng",["Subtotal"]="Tạm tính",["Grand Total"]="Tổng cộng",
+["Tax"]="Thuế",["Fee"]="Phí",["Charge"]="Phí",["Discount"]="Giảm giá",
+["Sale"]="Khuyến mãi",["Promotion"]="Khuyến mãi",["Deal"]="Ưu đãi",
+["Free"]="Miễn phí",["Paid"]="Trả phí",["Premium"]="Cao cấp",["VIP"]="VIP",
+["Robux"]="Robux",["Bought"]="Đã mua",["Sold"]="Đã bán",["Purchase"]="Mua",
+["Purchased"]="Đã mua",["Refund"]="Hoàn tiền",["Refunded"]="Đã hoàn tiền",
+["Income"]="Thu nhập",["Expense"]="Chi tiêu",["Profit"]="Lợi nhuận",
+["Loss"]="Lỗ",["Debt"]="Nợ",["Loan"]="Vay",["Rent"]="Thuê",
+["Salary"]="Lương",["Wage"]="Tiền công",["Tip"]="Tiền boa",["Bonus"]="Thưởng",
+["Donate"]="Quyên góp",["Donation"]="Quyên góp",["Bank"]="Ngân hàng",
+["Deposit"]="Gửi",["Withdraw"]="Rút",["Transfer"]="Chuyển",["Earn"]="Kiếm",
+["Earned"]="Đã kiếm",["Spend"]="Tiêu",["Spent"]="Đã tiêu",["Change"]="Tiền thối",
+["Rich"]="Giàu",["Poor"]="Nghèo",["Wealth"]="Tài sản",["Fortune"]="Tài sản lớn",
+["Broke"]="Hết tiền",["Billionaire"]="Tỷ phú",["Millionaire"]="Triệu phú",
+-- ═══ SHOP ═══
 ["Shop"]="Cửa hàng",["Store"]="Cửa hàng",["Market"]="Chợ",["Marketplace"]="Chợ",
-["Offer"]="Đề nghị",["Deal"]="Giao dịch",["Bid"]="Đặt giá",["Auction"]="Đấu giá",
-["Cart"]="Giỏ hàng",["Checkout"]="Thanh toán",["Order"]="Đơn hàng",
+["Trade"]="Trao đổi",["Trading"]="Giao dịch",["Trade Hub"]="Khu giao dịch",
+["Offer"]="Đề nghị",["Bid"]="Đặt giá",["Auction"]="Đấu giá",
+["Auction House"]="Nhà đấu giá",["Cart"]="Giỏ hàng",["Shopping Cart"]="Giỏ hàng",
+["Checkout"]="Thanh toán",["Order"]="Đơn hàng",["Orders"]="Đơn hàng",
+["Delivery"]="Giao hàng",["Shipping"]="Vận chuyển",["Purchase History"]="Lịch sử mua",
+["Wishlist"]="Danh sách yêu thích",["Favorite"]="Yêu thích",["Favorites"]="Yêu thích",
+["Recommended"]="Đề xuất",["Popular"]="Phổ biến",["Trending"]="Đang hot",
+["Best Seller"]="Bán chạy",["Limited"]="Giới hạn",["Exclusive"]="Độc quyền",
+["Special Offer"]="Ưu đãi đặc biệt",["Bundle"]="Gói",["Pack"]="Gói",
+["Package"]="Gói hàng",["Starter Pack"]="Gói khởi đầu",["Lootbox"]="Hộp quà",
+["Lucky Box"]="Hộp may mắn",["Mystery Box"]="Hộp bí ẩn",
+["Supply Crate"]="Thùng tiếp tế",["Gacha"]="Gacha",["Roll"]="Quay",
+["Spin"]="Quay",["Spin Wheel"]="Vòng quay",["Lucky Spin"]="Quay may mắn",
+["Vending Machine"]="Máy bán hàng",["Cash Register"]="Máy tính tiền",
+["Receipt"]="Hóa đơn",["Invoice"]="Hóa đơn",["Bill"]="Hóa đơn",
+["Trade Offer"]="Đề nghị giao dịch",["Trade Request"]="Yêu cầu giao dịch",
+["Trade Accept"]="Chấp nhận giao dịch",["Trade Decline"]="Từ chối giao dịch",
+["Trade Cancel"]="Hủy giao dịch",["Restock"]="Bổ sung hàng",
+["Sold Out"]="Hết hàng",["In Stock"]="Còn hàng",["Out of Stock"]="Hết hàng",
+["Sell All"]="Bán tất cả",["Buy All"]="Mua tất cả",["Equip All"]="Trang bị tất cả",
+["Claim"]="Nhận",["Claim All"]="Nhận tất cả",["Redeem"]="Đổi thưởng",
+["Redeem Code"]="Nhập code",["Promo Code"]="Mã khuyến mãi",
+["Gift Code"]="Mã quà tặng",["Code"]="Mã",["Codes"]="Mã",
+-- ═══ VẬT PHẨM ═══
 ["Inventory"]="Túi đồ",["Backpack"]="Ba lô",["Bag"]="Túi",["Item"]="Vật phẩm",
 ["Items"]="Vật phẩm",["Product"]="Sản phẩm",["Products"]="Sản phẩm",
-["Equipment"]="Trang bị",["Gear"]="Đồ",["Tool"]="Công cụ",["Weapon"]="Vũ khí",
-["Weapons"]="Vũ khí",["Armor"]="Giáp",["Helmet"]="Mũ",["Hat"]="Mũ",["Shield"]="Khiên",
-["Sword"]="Kiếm",["Axe"]="Rìu",["Bow"]="Cung",["Arrow"]="Mũi tên",["Gun"]="Súng",
+["Equipment"]="Trang bị",["Gear"]="Đồ",["Tool"]="Công cụ",["Tools"]="Công cụ",
+["Weapon"]="Vũ khí",["Weapons"]="Vũ khí",["Armor"]="Giáp",["Armour"]="Giáp",
+["Helmet"]="Mũ",["Hat"]="Mũ",["Shield"]="Khiên",["Sword"]="Kiếm",
+["Blade"]="Lưỡi",["Axe"]="Rìu",["Bow"]="Cung",["Arrow"]="Mũi tên",["Gun"]="Súng",
 ["Pistol"]="Súng lục",["Rifle"]="Súng trường",["Shotgun"]="Súng săn",
 ["Sniper"]="Súng bắn tỉa",["Knife"]="Dao",["Dagger"]="Dao găm",["Spear"]="Giáo",
 ["Staff"]="Gậy",["Wand"]="Đũa phép",["Potion"]="Thuốc",["Elixir"]="Tiên dược",
-["Scroll"]="Cuộn giấy",["Book"]="Sách",["Tome"]="Sách cổ",["Map"]="Bản đồ",
-["Key"]="Chìa khóa",["Keys"]="Chìa khóa",["Chest"]="Rương",["Box"]="Hộp",
-["Crate"]="Thùng",["Barrel"]="Thùng phuy",["Gift"]="Quà",["Present"]="Quà tặng",
-["Loot"]="Chiến lợi phẩm",["Rarity"]="Độ hiếm",["Common"]="Phổ thông",
-["Uncommon"]="Ít gặp",["Rare"]="Hiếm",["Epic"]="Sử thi",["Mythical"]="Thần thoại",
-["Divine"]="Thần thánh",["Godly"]="Thần cấp",["Unique"]="Độc nhất",
-["Exclusive"]="Độc quyền",["Limited"]="Giới hạn",
--- Nhiệm vụ
+["Antidote"]="Thuốc giải",["Herb"]="Thảo dược",["Scroll"]="Cuộn giấy",
+["Book"]="Sách",["Tome"]="Sách cổ",["Map"]="Bản đồ",["Compass"]="La bàn",
+["Key"]="Chìa khóa",["Keys"]="Chìa khóa",["Lock"]="Ổ khóa",["Unlock"]="Mở khóa",
+["Chest"]="Rương",["Chests"]="Rương",["Box"]="Hộp",["Crate"]="Thùng",
+["Barrel"]="Thùng phuy",["Pouch"]="Túi nhỏ",["Sack"]="Bao",["Case"]="Hộp",
+["Container"]="Hộp đựng",["Reward"]="Phần thưởng",["Rewards"]="Phần thưởng",
+["Bonus"]="Thưởng thêm",["Gift"]="Quà",["Gifts"]="Quà",["Present"]="Quà tặng",
+["Loot"]="Chiến lợi phẩm",["Drops"]="Vật rơi",["Rarity"]="Độ hiếm",
+["Common"]="Phổ thông",["Uncommon"]="Ít gặp",["Rare"]="Hiếm",
+["Very Rare"]="Rất hiếm",["Epic"]="Sử thi",["Legendary"]="Huyền thoại",
+["Mythical"]="Thần thoại",["Divine"]="Thần thánh",["Godly"]="Thần cấp",
+["Unique"]="Độc nhất",["Untradable"]="Không thể giao dịch",
+["Tradable"]="Có thể giao dịch",["Stackable"]="Có thể xếp",["Stack"]="Xếp chồng",
+["Max Stack"]="Xếp tối đa",["Quantity"]="Số lượng",["Amount"]="Số lượng",
+["Count"]="Đếm",["Total Items"]="Tổng vật phẩm",["Item Count"]="Số vật phẩm",
+["Empty Slot"]="Ô trống",["Full Inventory"]="Túi đầy",
+-- ═══ TRANG BỊ ═══
+["Equip"]="Trang bị",["Unequip"]="Tháo",["Use"]="Sử dụng",["Used"]="Đã dùng",
+["Wear"]="Mặc",["Wore"]="Đã mặc",["Wield"]="Cầm",["Own"]="Sở hữu",["Have"]="Có",
+["Has"]="Có",["Missing"]="Thiếu",["Required"]="Yêu cầu",["Require"]="Yêu cầu",
+["Need"]="Cần",["Want"]="Muốn",["Can"]="Có thể",["Cannot"]="Không thể",
+["Slot"]="Ô",["Slots"]="Ô",["Space"]="Chỗ",["Capacity"]="Sức chứa",
+["Max Capacity"]="Sức chứa tối đa",["Weight"]="Cân nặng",["Upgrade"]="Nâng cấp",
+["Downgrade"]="Hạ cấp",["Refine"]="Tinh luyện",["Enchant"]="Phù phép",
+["Enhance"]="Cường hóa",["Forge"]="Rèn",["Craft"]="Chế tạo",["Crafting"]="Chế tạo",
+["Repair"]="Sửa chữa",["Fuse"]="Hợp nhất",["Combine"]="Kết hợp",["Merge"]="Gộp",
+["Split"]="Tách",["Dismantle"]="Tháo rời",["Salvage"]="Tận dụng",
+["Durability"]="Độ bền",["Quality"]="Chất lượng",["Condition"]="Tình trạng",
+["Broken"]="Hỏng",["Damaged"]="Bị hỏng",["New"]="Mới",["Old"]="Cũ",
+["Ancient"]="Cổ đại",["Modern"]="Hiện đại",
+["Lock Item"]="Khóa vật phẩm",["Unlock Item"]="Mở khóa vật phẩm",
+["Favorite Item"]="Yêu thích vật phẩm",["Sell Item"]="Bán vật phẩm",
+["Drop Item"]="Bỏ vật phẩm",["Give Item"]="Tặng vật phẩm",
+["Level Up Item"]="Nâng cấp vật phẩm",["Max Level Item"]="Vật phẩm tối đa",
+-- ═══ NHIỆM VỤ ═══
 ["Quest"]="Nhiệm vụ",["Quests"]="Nhiệm vụ",["Mission"]="Nhiệm vụ",
 ["Missions"]="Nhiệm vụ",["Task"]="Nhiệm vụ",["Tasks"]="Nhiệm vụ",
 ["Objective"]="Mục tiêu",["Objectives"]="Mục tiêu",["Goal"]="Mục tiêu",
-["Target"]="Mục tiêu",["Challenge"]="Thử thách",["Daily"]="Hàng ngày",
-["Weekly"]="Hàng tuần",["Monthly"]="Hàng tháng",["Event"]="Sự kiện",
-["Events"]="Sự kiện",["Season"]="Mùa",["Season Pass"]="Vé mùa",
-["Battle Pass"]="Vé trận đấu",["Complete"]="Hoàn thành",
-["Completed"]="Đã hoàn thành",["Finish"]="Kết thúc",["Finished"]="Đã xong",
-["Failed"]="Thất bại",["Success"]="Thành công",["Win"]="Thắng",
-["Victory"]="Chiến thắng",["Lose"]="Thua",["Defeat"]="Thất bại",["Draw"]="Hòa",
-["Tie"]="Hòa",["In Progress"]="Đang tiến hành",["Pending"]="Đang chờ",
-["Available"]="Có sẵn",["Ready"]="Sẵn sàng",
--- Thông báo
+["Goals"]="Mục tiêu",["Target"]="Mục tiêu",["Targets"]="Mục tiêu",
+["Chore"]="Việc vặt",["Challenge"]="Thử thách",["Challenges"]="Thử thách",
+["Daily"]="Hàng ngày",["Daily Quest"]="Nhiệm vụ hàng ngày",
+["Daily Reward"]="Thưởng hàng ngày",["Weekly"]="Hàng tuần",
+["Weekly Quest"]="Nhiệm vụ hàng tuần",["Monthly"]="Hàng tháng",
+["Event"]="Sự kiện",["Events"]="Sự kiện",["Updates"]="Cập nhật",
+["Season"]="Mùa",["Season Pass"]="Vé mùa",["Battle Pass"]="Vé trận đấu",
+["Pass"]="Vé",["Free Pass"]="Vé miễn phí",["Premium Pass"]="Vé cao cấp",
+["Tier"]="Bậc",["Reward Track"]="Đường thưởng",
+["Complete"]="Hoàn thành",["Completed"]="Đã hoàn thành",
+["Incomplete"]="Chưa hoàn thành",["Finish"]="Kết thúc",["Finished"]="Đã xong",
+["Fail"]="Thất bại",["Failed"]="Thất bại",["Success"]="Thành công",
+["Succeed"]="Thành công",["In Progress"]="Đang tiến hành",
+["Pending"]="Đang chờ",["Available"]="Có sẵn",["Unavailable"]="Không có",
+["Ready"]="Sẵn sàng",["Not Ready"]="Chưa sẵn sàng",["Active"]="Hoạt động",
+["Inactive"]="Không hoạt động",["Ongoing"]="Đang diễn ra",
+["Expired"]="Hết hạn",["Expire"]="Hết hạn",["Reset Time"]="Thời gian reset",
+["Next Reset"]="Reset tiếp theo",["Refill"]="Đổ đầy",["Charge"]="Nạp",
+["Recharge"]="Nạp lại",["Claim Reward"]="Nhận thưởng",
+["Claim All"]="Nhận tất cả",["Skip Reward"]="Bỏ qua phần thưởng",
+["Streak"]="Chuỗi",["Login Streak"]="Chuỗi đăng nhập",
+["Daily Streak"]="Chuỗi hàng ngày",["Win Streak"]="Chuỗi thắng",
+["Loss Streak"]="Chuỗi thua",["Break Streak"]="Đứt chuỗi",
+["Continue Streak"]="Tiếp tục chuỗi",["Streak Bonus"]="Thưởng chuỗi",
+["Keep Streak"]="Giữ chuỗi",["Streak Reset"]="Reset chuỗi",
+-- ═══ THÔNG BÁO ═══
 ["Notification"]="Thông báo",["Notifications"]="Thông báo",["Message"]="Tin nhắn",
 ["Messages"]="Tin nhắn",["Chat"]="Trò chuyện",["Alert"]="Cảnh báo",
 ["Warning"]="Cảnh báo",["Error"]="Lỗi",["Errors"]="Lỗi",["Notice"]="Thông báo",
 ["Announcement"]="Thông cáo",["Loading"]="Đang tải",["Loaded"]="Đã tải",
 ["Please Wait"]="Vui lòng đợi",["Wait"]="Đợi",["Processing"]="Đang xử lý",
 ["Connecting"]="Đang kết nối",["Connected"]="Đã kết nối",
-["Disconnected"]="Đã ngắt",["Online"]="Trực tuyến",["Offline"]="Ngoại tuyến",
-["Busy"]="Bận",["Welcome"]="Chào mừng",["Goodbye"]="Tạm biệt",
-["Hello"]="Xin chào",["Hi"]="Chào",["Hey"]="Này",["Thanks"]="Cảm ơn",
-["Thank You"]="Cảm ơn bạn",["Sorry"]="Xin lỗi",["Please"]="Làm ơn",
-["Congrats"]="Chúc mừng",["Congratulations"]="Chúc mừng",
+["Disconnected"]="Đã ngắt",["Reconnecting"]="Đang kết nối lại",
+["Online"]="Trực tuyến",["Offline"]="Ngoại tuyến",["Busy"]="Bận",
+["Welcome"]="Chào mừng",["Welcome Back"]="Chào mừng trở lại",
+["Goodbye"]="Tạm biệt",["Hello"]="Xin chào",["Hi"]="Chào",["Hey"]="Này",
+["Thanks"]="Cảm ơn",["Thank You"]="Cảm ơn bạn",["Sorry"]="Xin lỗi",
+["Please"]="Làm ơn",["Congrats"]="Chúc mừng",["Congratulations"]="Chúc mừng",
 ["Good Luck"]="Chúc may mắn",["Good Job"]="Làm tốt lắm",["Well Done"]="Làm tốt",
 ["Amazing"]="Tuyệt vời",["Awesome"]="Tuyệt vời",["Great"]="Tuyệt",["Good"]="Tốt",
 ["Bad"]="Tệ",["Excellent"]="Xuất sắc",["Perfect"]="Hoàn hảo",
-["Fantastic"]="Tuyệt vời",["Nice"]="Tốt",["Cool"]="Ngầu",["Easy"]="Dễ",
-["Normal"]="Bình thường",["Hard"]="Khó",["Difficult"]="Khó",
-["Impossible"]="Bất khả thi",["Fun"]="Vui",["Boring"]="Chán",
--- Cài đặt
+["Fantastic"]="Tuyệt vời",["Wonderful"]="Tuyệt diệu",["Nice"]="Tốt",
+["Cool"]="Ngầu",["Sweet"]="Ngọt",["Easy"]="Dễ",["Normal"]="Bình thường",
+["Hard"]="Khó",["Difficult"]="Khó",["Impossible"]="Bất khả thi",
+["Fun"]="Vui",["Boring"]="Chán",["Exciting"]="Hấp dẫn",
+["Interesting"]="Thú vị",["Great Job"]="Làm tốt",["Excellent Work"]="Xuất sắc",
+["Well Played"]="Chơi hay",["Nice Try"]="Cố gắng tốt",["Better Luck"]="Chúc may mắn lần sau",
+["Level Up"]="Lên cấp",["You Win"]="Bạn thắng",["You Lose"]="Bạn thua",
+["Game Over"]="Kết thúc",["Game Start"]="Bắt đầu game",["Game Paused"]="Game tạm dừng",
+["Try Again"]="Thử lại",["Play Again"]="Chơi lại",["Replay"]="Chơi lại",
+["Continue"]="Tiếp tục",["Skip"]="Bỏ qua",["Next"]="Tiếp",["Done"]="Xong",
+["Success"]="Thành công",["Failed"]="Thất bại",["Error Occurred"]="Đã xảy ra lỗi",
+["Something Went Wrong"]="Có gì đó không đúng",["Try Later"]="Thử lại sau",
+["Come Back Later"]="Quay lại sau",["Check Again"]="Kiểm tra lại",
+["Not Enough"]="Không đủ",["Too Much"]="Quá nhiều",["Too Little"]="Quá ít",
+["Full"]="Đầy",["Empty"]="Trống",["Almost"]="Gần xong",["Almost There"]="Sắp xong",
+["Almost Done"]="Sắp xong",["Just Started"]="Vừa bắt đầu",
+["Finished"]="Đã xong",["Complete"]="Hoàn thành",["Incomplete"]="Chưa xong",
+-- ═══ CÀI ĐẶT ═══
 ["Sound"]="Âm thanh",["Music"]="Nhạc",["Volume"]="Âm lượng",["Audio"]="Âm thanh",
 ["Graphics"]="Đồ họa",["Quality"]="Chất lượng",["Language"]="Ngôn ngữ",
 ["English"]="Tiếng Anh",["Vietnamese"]="Tiếng Việt",["Chinese"]="Tiếng Trung",
 ["Japanese"]="Tiếng Nhật",["Korean"]="Tiếng Hàn",["Spanish"]="Tiếng Tây Ban Nha",
 ["French"]="Tiếng Pháp",["German"]="Tiếng Đức",["Russian"]="Tiếng Nga",
+["Portuguese"]="Tiếng Bồ Đào Nha",["Italian"]="Tiếng Ý",["Thai"]="Tiếng Thái",
+["Indonesian"]="Tiếng Indonesia",["Filipino"]="Tiếng Philippines",
+["Malay"]="Tiếng Mã Lai",["Hindi"]="Tiếng Hindi",["Arabic"]="Tiếng Ả Rập",
 ["On"]="Bật",["Off"]="Tắt",["Enable"]="Bật",["Disable"]="Tắt",
-["Enabled"]="Đã bật",["Disabled"]="Đã tắt",["Brightness"]="Độ sáng",
-["Resolution"]="Độ phân giải",["Fullscreen"]="Toàn màn hình",["Windowed"]="Cửa sổ",
-["FPS"]="FPS",["Frame Rate"]="Tốc độ khung hình",["Low"]="Thấp",
-["Medium"]="Trung bình",["High"]="Cao",["Ultra"]="Cực cao",["Default"]="Mặc định",
-["Custom"]="Tùy chỉnh",["Advanced"]="Nâng cao",["Basic"]="Cơ bản",
-["Simple"]="Đơn giản",["Auto"]="Tự động",["Manual"]="Thủ công",
+["Enabled"]="Đã bật",["Disabled"]="Đã tắt",["Turn On"]="Bật",["Turn Off"]="Tắt",
+["Brightness"]="Độ sáng",["Contrast"]="Độ tương phản",["Gamma"]="Độ sáng màn hình",
+["Resolution"]="Độ phân giải",["Fullscreen"]="Toàn màn hình",
+["Windowed"]="Cửa sổ",["VSync"]="Đồng bộ dọc",["FPS"]="FPS",
+["Frame Rate"]="Tốc độ khung hình",["Low"]="Thấp",["Medium"]="Trung bình",
+["High"]="Cao",["Ultra"]="Cực cao",["Very High"]="Rất cao",
+["Default"]="Mặc định",["Custom"]="Tùy chỉnh",["Advanced"]="Nâng cao",
+["Basic"]="Cơ bản",["Simple"]="Đơn giản",["Complex"]="Phức tạp",
+["Auto"]="Tự động",["Manual"]="Thủ công",["Automatic"]="Tự động",
 ["Keyboard"]="Bàn phím",["Mouse"]="Chuột",["Controller"]="Tay cầm",
 ["Gamepad"]="Tay cầm",["Touch"]="Cảm ứng",["Keybind"]="Phím tắt",
--- Thời gian
+["Shortcut"]="Phím tắt",["Hotkey"]="Phím nóng",["Bind"]="Gán phím",
+["Rebind"]="Gán lại",["Reset Bind"]="Đặt lại phím",["Default Bind"]="Phím mặc định",
+["Sensitivity"]="Độ nhạy",["Invert"]="Đảo ngược",["Aim"]="Ngắm",
+["Crosshair"]="Tâm ngắm",["Cursor"]="Con trỏ",["Look"]="Nhìn",
+["Move"]="Di chuyển",["Jump"]="Nhảy",["Crouch"]="Ngồi",["Sprint"]="Chạy nhanh",
+["Reload"]="Nạp đạn",["Fire"]="Bắn",["Shoot"]="Bắn",["Aim Down Sights"]="Ngắm",
+["Zoom"]="Phóng to",["Scope"]="Ống ngắm",["Interact"]="Tương tác",
+["Primary"]="Chính",["Secondary"]="Phụ",["Tertiary"]="Cấp 3",
+["Save Settings"]="Lưu cài đặt",["Reset Settings"]="Đặt lại cài đặt",
+["Default Settings"]="Cài đặt mặc định",["Apply Changes"]="Áp dụng thay đổi",
+-- ═══ THỜI GIAN ═══
 ["Time"]="Thời gian",["Date"]="Ngày",["Day"]="Ngày",["Days"]="Ngày",
 ["Week"]="Tuần",["Weeks"]="Tuần",["Month"]="Tháng",["Months"]="Tháng",
-["Year"]="Năm",["Years"]="Năm",["Hour"]="Giờ",["Hours"]="Giờ",["Minute"]="Phút",
-["Minutes"]="Phút",["Second"]="Giây",["Seconds"]="Giây",["Today"]="Hôm nay",
-["Tomorrow"]="Ngày mai",["Yesterday"]="Hôm qua",["Now"]="Bây giờ",["Later"]="Sau",
-["Soon"]="Sớm",["Always"]="Luôn",["Never"]="Không bao giờ",["Sometimes"]="Đôi khi",
+["Year"]="Năm",["Years"]="Năm",["Hour"]="Giờ",["Hours"]="Giờ",
+["Minute"]="Phút",["Minutes"]="Phút",["Second"]="Giây",["Seconds"]="Giây",
+["Millisecond"]="Mili giây",["Today"]="Hôm nay",["Tomorrow"]="Ngày mai",
+["Yesterday"]="Hôm qua",["Now"]="Bây giờ",["Later"]="Sau",["Soon"]="Sớm",
+["Always"]="Luôn",["Never"]="Không bao giờ",["Sometimes"]="Đôi khi",
 ["Often"]="Thường xuyên",["Rarely"]="Hiếm khi",["Morning"]="Buổi sáng",
 ["Afternoon"]="Buổi chiều",["Evening"]="Buổi tối",["Night"]="Ban đêm",
-["Noon"]="Buổi trưa",["Midnight"]="Nửa đêm",["Spring"]="Mùa xuân",
-["Summer"]="Mùa hè",["Fall"]="Mùa thu",["Autumn"]="Mùa thu",["Winter"]="Mùa đông",
-["Monday"]="Thứ Hai",["Tuesday"]="Thứ Ba",["Wednesday"]="Thứ Tư",
-["Thursday"]="Thứ Năm",["Friday"]="Thứ Sáu",["Saturday"]="Thứ Bảy",
-["Sunday"]="Chủ Nhật",["January"]="Tháng Một",["February"]="Tháng Hai",
-["March"]="Tháng Ba",["April"]="Tháng Tư",["May"]="Tháng Năm",["June"]="Tháng Sáu",
+["Noon"]="Buổi trưa",["Midnight"]="Nửa đêm",["Dawn"]="Bình minh",
+["Dusk"]="Hoàng hôn",["Sunrise"]="Mặt trời mọc",["Sunset"]="Mặt trời lặn",
+["Spring"]="Mùa xuân",["Summer"]="Mùa hè",["Fall"]="Mùa thu",
+["Autumn"]="Mùa thu",["Winter"]="Mùa đông",["Monday"]="Thứ Hai",
+["Tuesday"]="Thứ Ba",["Wednesday"]="Thứ Tư",["Thursday"]="Thứ Năm",
+["Friday"]="Thứ Sáu",["Saturday"]="Thứ Bảy",["Sunday"]="Chủ Nhật",
+["Weekday"]="Ngày thường",["Weekend"]="Cuối tuần",
+["January"]="Tháng Một",["February"]="Tháng Hai",["March"]="Tháng Ba",
+["April"]="Tháng Tư",["May"]="Tháng Năm",["June"]="Tháng Sáu",
 ["July"]="Tháng Bảy",["August"]="Tháng Tám",["September"]="Tháng Chín",
 ["October"]="Tháng Mười",["November"]="Tháng Mười Một",["December"]="Tháng Mười Hai",
--- Số đếm
+["Century"]="Thế kỷ",["Decade"]="Thập kỷ",["Era"]="Kỷ nguyên",
+["Age"]="Thời đại",["Period"]="Thời kỳ",["Moment"]="Khoảnh khắc",
+["Instant"]="Tức thì",["Forever"]="Mãi mãi",["Eternal"]="Vĩnh cửu",
+["Countdown"]="Đếm ngược",["Timer"]="Đồng hồ",["Clock"]="Đồng hồ",
+["Stopwatch"]="Đồng hồ bấm giờ",["Elapsed"]="Đã qua",["Remaining"]="Còn lại",
+["Time Left"]="Thời gian còn lại",["Time Up"]="Hết giờ",
+-- ═══ SỐ ĐẾM ═══
 ["Zero"]="Không",["One"]="Một",["Two"]="Hai",["Three"]="Ba",["Four"]="Bốn",
 ["Five"]="Năm",["Six"]="Sáu",["Seven"]="Bảy",["Eight"]="Tám",["Nine"]="Chín",
-["Ten"]="Mười",["Twenty"]="Hai mươi",["Thirty"]="Ba mươi",["Fifty"]="Năm mươi",
-["Hundred"]="Trăm",["Thousand"]="Nghìn",["Million"]="Triệu",["Billion"]="Tỷ",
-["First"]="Đầu tiên",["Second"]="Thứ hai",["Third"]="Thứ ba",["Last"]="Cuối cùng",
-["Final"]="Chung kết",["Beginning"]="Bắt đầu",["End"]="Kết thúc",
-["Half"]="Một nửa",["Double"]="Gấp đôi",["Triple"]="Gấp ba",["Single"]="Đơn",
-["Few"]="Ít",["Many"]="Nhiều",["Some"]="Một vài",["All"]="Tất cả",
-["None"]="Không có",["Every"]="Mọi",["Each"]="Mỗi",["Both"]="Cả hai",
-["More"]="Nhiều hơn",["Less"]="Ít hơn",["Most"]="Nhiều nhất",["Enough"]="Đủ",
--- Màu sắc
+["Ten"]="Mười",["Eleven"]="Mười một",["Twelve"]="Mười hai",
+["Thirteen"]="Mười ba",["Fourteen"]="Mười bốn",["Fifteen"]="Mười lăm",
+["Sixteen"]="Mười sáu",["Seventeen"]="Mười bảy",["Eighteen"]="Mười tám",
+["Nineteen"]="Mười chín",["Twenty"]="Hai mươi",["Thirty"]="Ba mươi",
+["Forty"]="Bốn mươi",["Fifty"]="Năm mươi",["Sixty"]="Sáu mươi",
+["Seventy"]="Bảy mươi",["Eighty"]="Tám mươi",["Ninety"]="Chín mươi",
+["Hundred"]="Trăm",["Thousand"]="Nghìn",["Million"]="Triệu",
+["Billion"]="Tỷ",["Trillion"]="Nghìn tỷ",["Quadrillion"]="Triệu tỷ",
+["First"]="Đầu tiên",["Second"]="Thứ hai",["Third"]="Thứ ba",
+["Fourth"]="Thứ tư",["Fifth"]="Thứ năm",["Sixth"]="Thứ sáu",
+["Seventh"]="Thứ bảy",["Eighth"]="Thứ tám",["Ninth"]="Thứ chín",
+["Tenth"]="Thứ mười",["Last"]="Cuối cùng",["Final"]="Chung kết",
+["Beginning"]="Bắt đầu",["End"]="Kết thúc",["Middle"]="Giữa",
+["Half"]="Một nửa",["Quarter"]="Một phần tư",["Double"]="Gấp đôi",
+["Triple"]="Gấp ba",["Quadruple"]="Gấp bốn",["Single"]="Đơn",
+["Multiple"]="Nhiều",["Few"]="Ít",["Many"]="Nhiều",["Some"]="Một vài",
+["All"]="Tất cả",["None"]="Không có",["Every"]="Mọi",["Each"]="Mỗi",
+["Both"]="Cả hai",["Either"]="Hoặc",["Neither"]="Không cái nào",
+["Another"]="Khác",["Other"]="Khác",["Same"]="Giống",
+["Different"]="Khác nhau",["Similar"]="Tương tự",["Equal"]="Bằng",
+["More"]="Nhiều hơn",["Less"]="Ít hơn",["Most"]="Nhiều nhất",
+["Least"]="Ít nhất",["Enough"]="Đủ",["Too Much"]="Quá nhiều",
+["Too Little"]="Quá ít",["Plenty"]="Nhiều",["Lots"]="Rất nhiều",
+["Pair"]="Cặp",["Dozen"]="Tá",["Score"]="Điểm số",["Percent"]="Phần trăm",
+["Percentage"]="Phần trăm",["Ratio"]="Tỷ lệ",["Fraction"]="Phân số",
+["Decimal"]="Số thập phân",["Number"]="Số",["Digit"]="Chữ số",
+["Odd"]="Số lẻ",["Even"]="Số chẵn",["Positive"]="Dương",
+["Negative"]="Âm",["Zero Point"]="Không phẩy",["Infinity"]="Vô cực",
+-- ═══ MÀU SẮC ═══
 ["Red"]="Đỏ",["Blue"]="Xanh dương",["Green"]="Xanh lá",["Yellow"]="Vàng",
-["Orange"]="Cam",["Purple"]="Tím",["Pink"]="Hồng",["Brown"]="Nâu",["Black"]="Đen",
-["White"]="Trắng",["Gray"]="Xám",["Grey"]="Xám",["Silver"]="Bạc",
-["Golden"]="Vàng kim",["Cyan"]="Xanh lơ",["Navy"]="Xanh hải quân",
-["Violet"]="Tím violet",["Indigo"]="Chàm",["Rainbow"]="Cầu vồng",
-["Bright"]="Sáng",["Dark"]="Tối",["Light"]="Nhạt",
--- Động vật
-["Dog"]="Chó",["Cat"]="Mèo",["Bird"]="Chim",["Fish"]="Cá",["Horse"]="Ngựa",
-["Cow"]="Bò",["Pig"]="Heo",["Sheep"]="Cừu",["Goat"]="Dê",["Chicken"]="Gà",
-["Duck"]="Vịt",["Rabbit"]="Thỏ",["Mouse"]="Chuột",["Rat"]="Chuột cống",
-["Bear"]="Gấu",["Panda"]="Gấu trúc",["Wolf"]="Sói",["Fox"]="Cáo",
-["Lion"]="Sư tử",["Tiger"]="Hổ",["Leopard"]="Báo",["Elephant"]="Voi",
-["Monkey"]="Khỉ",["Gorilla"]="Khỉ đột",["Snake"]="Rắn",["Lizard"]="Thằn lằn",
-["Crocodile"]="Cá sấu",["Turtle"]="Rùa",["Frog"]="Ếch",["Spider"]="Nhện",
-["Ant"]="Kiến",["Bee"]="Ong",["Butterfly"]="Bướm",["Whale"]="Cá voi",
-["Dolphin"]="Cá heo",["Shark"]="Cá mập",["Octopus"]="Bạch tuộc",["Crab"]="Cua",
-["Penguin"]="Chim cánh cụt",["Eagle"]="Đại bàng",["Owl"]="Cú mèo",
-["Parrot"]="Vẹt",["Peacock"]="Công",["Swan"]="Thiên nga",
--- Sinh vật thần thoại
+["Orange"]="Cam",["Purple"]="Tím",["Pink"]="Hồng",["Brown"]="Nâu",
+["Black"]="Đen",["White"]="Trắng",["Gray"]="Xám",["Grey"]="Xám",
+["Silver"]="Bạc",["Golden"]="Vàng kim",["Gold"]="Vàng",["Cyan"]="Xanh lơ",
+["Magenta"]="Hồng cánh sen",["Lime"]="Xanh chanh",["Navy"]="Xanh hải quân",
+["Teal"]="Xanh mòng két",["Maroon"]="Đỏ đô",["Olive"]="Ô liu",
+["Beige"]="Màu be",["Cream"]="Kem",["Turquoise"]="Ngọc lam",
+["Violet"]="Tím violet",["Indigo"]="Chàm",["Crimson"]="Đỏ thắm",
+["Scarlet"]="Đỏ tươi",["Amber"]="Hổ phách",["Emerald"]="Ngọc lục bảo",
+["Ruby"]="Hồng ngọc",["Sapphire"]="Lam ngọc",["Topaz"]="Hoàng ngọc",
+["Ivory"]="Ngà voi",["Pearl"]="Ngọc trai",["Bronze"]="Đồng",
+["Copper"]="Đồng đỏ",["Platinum"]="Bạch kim",["Titanium"]="Titan",
+["Rainbow"]="Cầu vồng",["Transparent"]="Trong suốt",["Opaque"]="Đục",
+["Bright"]="Sáng",["Dark"]="Tối",["Light"]="Nhạt",["Deep"]="Sâu",
+["Pale"]="Nhợt nhạt",["Neon"]="Neon",["Pastel"]="Pastel",
+["Metallic"]="Kim loại",["Matte"]="Mờ",["Glossy"]="Bóng",
+["Shiny"]="Sáng bóng",["Sparkle"]="Lấp lánh",["Faded"]="Phai màu",
+["Vivid"]="Sống động",["Muted"]="Dịu",["Pure"]="Thuần khiết",
+["Mixed"]="Pha trộn",["Blend"]="Hòa trộn",["Gradient"]="Chuyển màu",
+["Solid"]="Đặc",["Striped"]="Sọc",["Dotted"]="Chấm",
+["Checked"]="Ca rô",["Plaid"]="Kẻ ô",["Pattern"]="Hoa văn",
+-- ═══ ĐỘNG VẬT ═══
+["Dog"]="Chó",["Puppy"]="Chó con",["Cat"]="Mèo",["Kitten"]="Mèo con",
+["Bird"]="Chim",["Fish"]="Cá",["Horse"]="Ngựa",["Cow"]="Bò",["Pig"]="Heo",
+["Sheep"]="Cừu",["Goat"]="Dê",["Chicken"]="Gà",["Rooster"]="Gà trống",
+["Duck"]="Vịt",["Goose"]="Ngỗng",["Turkey"]="Gà tây",["Rabbit"]="Thỏ",
+["Bunny"]="Thỏ con",["Mouse"]="Chuột",["Rat"]="Chuột cống",["Bear"]="Gấu",
+["Panda"]="Gấu trúc",["Polar Bear"]="Gấu Bắc Cực",["Wolf"]="Sói",
+["Fox"]="Cáo",["Lion"]="Sư tử",["Tiger"]="Hổ",["Leopard"]="Báo",
+["Cheetah"]="Báo gêpa",["Panther"]="Báo đen",["Jaguar"]="Báo đốm",
+["Elephant"]="Voi",["Monkey"]="Khỉ",["Ape"]="Vượn",["Gorilla"]="Khỉ đột",
+["Chimpanzee"]="Tinh tinh",["Snake"]="Rắn",["Cobra"]="Rắn hổ mang",
+["Python"]="Trăn",["Viper"]="Rắn độc",["Lizard"]="Thằn lằn",
+["Crocodile"]="Cá sấu",["Alligator"]="Cá sấu Mỹ",["Turtle"]="Rùa",
+["Frog"]="Ếch",["Toad"]="Cóc",["Spider"]="Nhện",["Scorpion"]="Bọ cạp",
+["Ant"]="Kiến",["Bee"]="Ong",["Wasp"]="Ong bắp cày",["Butterfly"]="Bướm",
+["Moth"]="Bướm đêm",["Beetle"]="Bọ cánh cứng",["Dragonfly"]="Chuồn chuồn",
+["Cricket"]="Dế",["Grasshopper"]="Châu chấu",["Whale"]="Cá voi",
+["Dolphin"]="Cá heo",["Shark"]="Cá mập",["Octopus"]="Bạch tuộc",
+["Squid"]="Mực",["Crab"]="Cua",["Lobster"]="Tôm hùm",["Shrimp"]="Tôm",
+["Jellyfish"]="Sứa",["Starfish"]="Sao biển",["Seahorse"]="Cá ngựa",
+["Penguin"]="Chim cánh cụt",["Eagle"]="Đại bàng",["Hawk"]="Diều hâu",
+["Falcon"]="Chim ưng",["Owl"]="Cú mèo",["Parrot"]="Vẹt",["Peacock"]="Công",
+["Swan"]="Thiên nga",["Crane"]="Sếu",["Flamingo"]="Hồng hạc",
+["Pelican"]="Bồ nông",["Pigeon"]="Bồ câu",["Sparrow"]="Chim sẻ",
+["Robin"]="Chim cổ đỏ",["Crow"]="Quạ",["Raven"]="Quạ đen",
+["Bat"]="Dơi",["Deer"]="Hươu",["Elk"]="Nai sừng tấm",["Moose"]="Nai",
+["Buffalo"]="Trâu",["Bison"]="Bò rừng",["Camel"]="Lạc đà",["Llama"]="Lạc đà không bướu",
+["Donkey"]="Lừa",["Mule"]="La",["Zebra"]="Ngựa vằn",["Giraffe"]="Hươu cao cổ",
+["Hippo"]="Hà mã",["Rhino"]="Tê giác",["Kangaroo"]="Kangaroo",
+["Koala"]="Gấu túi",["Sloth"]="Lười",["Otter"]="Rái cá",["Beaver"]="Hải ly",
+["Skunk"]="Chồn hôi",["Raccoon"]="Gấu mèo",["Badger"]="Lửng",
+["Hedgehog"]="Nhím",["Squirrel"]="Sóc",["Chipmunk"]="Sóc chuột",
+["Hamster"]="Chuột hamster",["Guinea Pig"]="Chuột lang",
+["Parrot"]="Vẹt",["Macaw"]="Vẹt đuôi dài",["Cockatoo"]="Vẹt mào",
+-- ═══ SINH VẬT THẦN THOẠI ═══
 ["Dragon"]="Rồng",["Phoenix"]="Phượng hoàng",["Unicorn"]="Kỳ lân",
-["Demon"]="Ác ma",["Angel"]="Thiên thần",["Ghost"]="Ma",["Spirit"]="Linh hồn",
-["Zombie"]="Xác sống",["Skeleton"]="Bộ xương",["Vampire"]="Ma cà rồng",
-["Werewolf"]="Người sói",["Witch"]="Phù thủy",["Wizard"]="Pháp sư",
-["Mage"]="Pháp sư",["Knight"]="Hiệp sĩ",["Warrior"]="Chiến binh",
-["Archer"]="Cung thủ",["Priest"]="Linh mục",["Rogue"]="Đạo tặc",
-["Assassin"]="Sát thủ",["Thief"]="Kẻ trộm",["Bandit"]="Cướp",
-["Pirate"]="Cướp biển",["Ninja"]="Ninja",["Samurai"]="Samurai",["Viking"]="Viking",
-["Titan"]="Titan",["Giant"]="Người khổng lồ",["Dwarf"]="Người lùn",
-["Elf"]="Yêu tinh",["Fairy"]="Tiên",["Goblin"]="Yêu tinh xấu",["Orc"]="Orc",
-["Troll"]="Quỷ khổng lồ",["Minotaur"]="Bò đầu người",["Centaur"]="Nhân mã",
-["Mermaid"]="Người cá",["Siren"]="Nàng tiên cá",
--- Địa điểm
-["Home"]="Nhà",["House"]="Nhà",["Base"]="Căn cứ",["Village"]="Làng",
-["Town"]="Thị trấn",["City"]="Thành phố",["Capital"]="Thủ đô",["Castle"]="Lâu đài",
-["Palace"]="Cung điện",["Fortress"]="Pháo đài",["Kingdom"]="Vương quốc",
-["Empire"]="Đế chế",["Nation"]="Quốc gia",["Country"]="Đất nước",
-["World"]="Thế giới",["Universe"]="Vũ trụ",["Galaxy"]="Thiên hà",
-["Planet"]="Hành tinh",["Space"]="Không gian",["Sky"]="Bầu trời",
-["Ground"]="Mặt đất",["Forest"]="Rừng",["Jungle"]="Rừng nhiệt đới",
-["Desert"]="Sa mạc",["Ocean"]="Đại dương",["Sea"]="Biển",["Lake"]="Hồ",
-["River"]="Sông",["Waterfall"]="Thác nước",["Beach"]="Bãi biển",
-["Island"]="Đảo",["Mountain"]="Núi",["Hill"]="Đồi",["Valley"]="Thung lũng",
-["Cave"]="Hang",["Dungeon"]="Hầm ngục",["Temple"]="Đền",["Church"]="Nhà thờ",
-["Tower"]="Tháp",["Bridge"]="Cầu",["Road"]="Đường",["Street"]="Phố",
-["Gate"]="Cổng",["Door"]="Cửa",["Wall"]="Tường",["Room"]="Phòng",
-["Hall"]="Sảnh",["Garden"]="Vườn",["Park"]="Công viên",["Arena"]="Đấu trường",
-["Library"]="Thư viện",["Tavern"]="Quán rượu",["Inn"]="Nhà trọ",
-["Hotel"]="Khách sạn",["Restaurant"]="Nhà hàng",["Cafe"]="Quán cà phê",
-["Blacksmith"]="Lò rèn",["Workshop"]="Xưởng",["Hospital"]="Bệnh viện",
-["Prison"]="Nhà tù",["Jail"]="Nhà giam",
--- Hành động
+["Pegasus"]="Ngựa có cánh",["Griffin"]="Sư tử đầu đại bàng",
+["Demon"]="Ác ma",["Devil"]="Quỷ",["Angel"]="Thiên thần",
+["Ghost"]="Ma",["Spirit"]="Linh hồn",["Wraith"]="Bóng ma",
+["Phantom"]="Bóng ma",["Zombie"]="Xác sống",["Skeleton"]="Bộ xương",
+["Vampire"]="Ma cà rồng",["Werewolf"]="Người sói",["Witch"]="Phù thủy",
+["Wizard"]="Pháp sư",["Warlock"]="Thuật sĩ",["Sorcerer"]="Pháp sư",
+["Mage"]="Pháp sư",["Necromancer"]="Tử linh sư",["Druid"]="Tu sĩ thiên nhiên",
+["Knight"]="Hiệp sĩ",["Paladin"]="Thánh kỵ sĩ",["Warrior"]="Chiến binh",
+["Fighter"]="Đấu sĩ",["Barbarian"]="Man rợ",["Berserker"]="Cuồng chiến",
+["Archer"]="Cung thủ",["Ranger"]="Kiểm lâm",["Hunter"]="Thợ săn",
+["Priest"]="Linh mục",["Cleric"]="Giáo sĩ",["Bishop"]="Giám mục",
+["Monk"]="Tu sĩ",["Rogue"]="Đạo tặc",["Thief"]="Kẻ trộm",
+["Assassin"]="Sát thủ",["Ninja"]="Ninja",["Samurai"]="Samurai",
+["Viking"]="Viking",["Pirate"]="Cướp biển",["Bandit"]="Cướp",
+["Mercenary"]="Lính đánh thuê",["Gladiator"]="Đấu sĩ",["Titan"]="Titan",
+["Giant"]="Người khổng lồ",["Dwarf"]="Người lùn",["Elf"]="Yêu tinh",
+["Fairy"]="Tiên",["Gnome"]="Thần lùn",["Goblin"]="Yêu tinh xấu",
+["Orc"]="Orc",["Troll"]="Quỷ khổng lồ",["Ogre"]="Quỷ ăn thịt người",
+["Minotaur"]="Bò đầu người",["Centaur"]="Nhân mã",["Mermaid"]="Người cá",
+["Merman"]="Người cá đực",["Siren"]="Nàng tiên cá",["Harpy"]="Chim đầu người",
+["Gargoyle"]="Tượng đá sống",["Chimera"]="Quái vật lai",["Hydra"]="Rắn nhiều đầu",
+["Cerberus"]="Chó ba đầu",["Kraken"]="Quái vật biển khổng lồ",
+["Leviathan"]="Thủy quái",["Behemoth"]="Dã thú khổng lồ",
+["Wyvern"]="Rồng hai chân",["Drake"]="Rồng con",["Wyrm"]="Rồng cổ đại",
+-- ═══ ĐỊA ĐIỂM ═══
+["Home"]="Nhà",["House"]="Nhà",["Base"]="Căn cứ",["Basecamp"]="Trại căn cứ",
+["Village"]="Làng",["Town"]="Thị trấn",["City"]="Thành phố",["Capital"]="Thủ đô",
+["Castle"]="Lâu đài",["Palace"]="Cung điện",["Fortress"]="Pháo đài",
+["Fort"]="Pháo đài nhỏ",["Kingdom"]="Vương quốc",["Empire"]="Đế chế",
+["Nation"]="Quốc gia",["Country"]="Đất nước",["World"]="Thế giới",
+["Universe"]="Vũ trụ",["Galaxy"]="Thiên hà",["Planet"]="Hành tinh",
+["Space"]="Không gian",["Sky"]="Bầu trời",["Ground"]="Mặt đất",
+["Underground"]="Dưới lòng đất",["Forest"]="Rừng",["Jungle"]="Rừng nhiệt đới",
+["Woods"]="Rừng",["Grove"]="Rừng nhỏ",["Desert"]="Sa mạc",["Oasis"]="Ốc đảo",
+["Ocean"]="Đại dương",["Sea"]="Biển",["Lake"]="Hồ",["River"]="Sông",
+["Stream"]="Suối",["Waterfall"]="Thác nước",["Pond"]="Ao",["Bay"]="Vịnh",
+["Beach"]="Bãi biển",["Coast"]="Bờ biển",["Island"]="Đảo",
+["Peninsula"]="Bán đảo",["Mountain"]="Núi",["Hill"]="Đồi",
+["Valley"]="Thung lũng",["Canyon"]="Hẻm núi",["Cliff"]="Vách đá",
+["Plateau"]="Cao nguyên",["Plain"]="Đồng bằng",["Prairie"]="Đồng cỏ",
+["Swamp"]="Đầm lầy",["Marsh"]="Đầm",["Cave"]="Hang",["Cavern"]="Hang lớn",
+["Dungeon"]="Hầm ngục",["Catacomb"]="Hầm mộ",["Tomb"]="Mộ",["Crypt"]="Hầm mộ",
+["Temple"]="Đền",["Shrine"]="Điện thờ",["Church"]="Nhà thờ",
+["Cathedral"]="Nhà thờ lớn",["Chapel"]="Nhà nguyện",["Monastery"]="Tu viện",
+["Abbey"]="Tu viện",["Tower"]="Tháp",["Bridge"]="Cầu",["Road"]="Đường",
+["Street"]="Phố",["Highway"]="Xa lộ",["Path"]="Lối đi",["Trail"]="Đường mòn",
+["Gate"]="Cổng",["Door"]="Cửa",["Wall"]="Tường",["Fence"]="Hàng rào",
+["Room"]="Phòng",["Hall"]="Sảnh",["Corridor"]="Hành lang",["Chamber"]="Buồng",
+["Garden"]="Vườn",["Park"]="Công viên",["Yard"]="Sân",["Courtyard"]="Sân trong",
+["Arena"]="Đấu trường",["Colosseum"]="Đấu trường La Mã",
+["Stadium"]="Sân vận động",["Library"]="Thư viện",["Museum"]="Bảo tàng",
+["Tavern"]="Quán rượu",["Inn"]="Nhà trọ",["Hotel"]="Khách sạn",
+["Restaurant"]="Nhà hàng",["Cafe"]="Quán cà phê",["Bar"]="Quán bar",
+["Blacksmith"]="Lò rèn",["Forge"]="Lò rèn",["Workshop"]="Xưởng",
+["Laboratory"]="Phòng thí nghiệm",["Hospital"]="Bệnh viện",
+["Clinic"]="Phòng khám",["Prison"]="Nhà tù",["Jail"]="Nhà giam",
+["Bank"]="Ngân hàng",["Storage"]="Kho",["Warehouse"]="Nhà kho",
+["Mine"]="Mỏ",["Quarry"]="Mỏ đá",["Farm"]="Nông trại",["Ranch"]="Trang trại",
+["Plantation"]="Đồn điền",["Orchard"]="Vườn cây ăn quả",
+["Greenhouse"]="Nhà kính",["Barn"]="Chuồng",["Stable"]="Chuồng ngựa",
+["Harbor"]="Cảng",["Dock"]="Bến tàu",["Pier"]="Cầu tàu",
+["Airport"]="Sân bay",["Station"]="Ga",["Terminal"]="Bến",
+["Garage"]="Gara",["Parking"]="Bãi đỗ xe",["Gas Station"]="Trạm xăng",
+["Lighthouse"]="Hải đăng",["Windmill"]="Cối xay gió",
+["Watermill"]="Cối xay nước",["Well"]="Giếng",["Fountain"]="Đài phun nước",
+["Statue"]="Tượng",["Monument"]="Tượng đài",["Obelisk"]="Cột đá",
+["Pyramid"]="Kim tự tháp",["Sphinx"]="Tượng nhân sư",
+["Ruins"]="Tàn tích",["Ruin"]="Phế tích",["Wasteland"]="Đất hoang",
+["Wilderness"]="Vùng hoang dã",["Frontier"]="Biên giới",
+["Border"]="Biên giới",["Territory"]="Lãnh thổ",["Region"]="Vùng",
+["Zone"]="Khu",["Area"]="Khu vực",["Sector"]="Khu vực",["District"]="Quận",
+["Neighborhood"]="Khu phố",["Suburb"]="Ngoại ô",["Downtown"]="Trung tâm",
+["Uptown"]="Khu thượng lưu",["Slum"]="Khu ổ chuột",
+-- ═══ HÀNH ĐỘNG ═══
 ["Walk"]="Đi bộ",["Run"]="Chạy",["Sprint"]="Chạy nước rút",["Jump"]="Nhảy",
 ["Leap"]="Nhảy vọt",["Crouch"]="Ngồi",["Crawl"]="Bò",["Fly"]="Bay",
-["Swim"]="Bơi",["Dive"]="Lặn",["Climb"]="Leo",["Sit"]="Ngồi",["Stand"]="Đứng",
-["Lie"]="Nằm",["Sleep"]="Ngủ",["Wake"]="Thức",["Rest"]="Nghỉ",["Eat"]="Ăn",
-["Drink"]="Uống",["Cook"]="Nấu",["Build"]="Xây",["Destroy"]="Phá",
-["Break"]="Vỡ",["Fix"]="Sửa",["Mine"]="Đào",["Dig"]="Đào",["Farm"]="Nông trại",
-["Plant"]="Trồng",["Harvest"]="Thu hoạch",["Water"]="Tưới",["Fish"]="Câu cá",
-["Hunt"]="Săn",["Hunting"]="Săn bắn",["Gather"]="Thu thập",["Collect"]="Thu thập",
-["Take"]="Lấy",["Give"]="Cho",["Get"]="Nhận",["Receive"]="Nhận",["Grab"]="Chộp",
-["Carry"]="Mang",["Lift"]="Nâng",["Throw"]="Ném",["Push"]="Đẩy",["Pull"]="Kéo",
+["Swim"]="Bơi",["Dive"]="Lặn",["Climb"]="Leo",["Sit"]="Ngồi",
+["Stand"]="Đứng",["Lie"]="Nằm",["Sleep"]="Ngủ",["Wake"]="Thức",
+["Rest"]="Nghỉ",["Eat"]="Ăn",["Drink"]="Uống",["Cook"]="Nấu",
+["Bake"]="Nướng bánh",["Grill"]="Nướng",["Roast"]="Quay",["Fry"]="Chiên",
+["Boil"]="Luộc",["Build"]="Xây",["Construct"]="Xây dựng",["Destroy"]="Phá",
+["Demolish"]="Phá hủy",["Break"]="Vỡ",["Shatter"]="Đập vỡ",["Fix"]="Sửa",
+["Repair"]="Sửa chữa",["Restore"]="Khôi phục",["Craft"]="Chế tạo",
+["Crafting"]="Chế tạo",["Forge"]="Rèn",["Smelt"]="Nấu chảy",
+["Mine"]="Đào",["Dig"]="Đào",["Excavate"]="Khai quật",["Farm"]="Nông trại",
+["Plant"]="Trồng",["Harvest"]="Thu hoạch",["Water"]="Tưới",["Grow"]="Trồng",
+["Breed"]="Nhân giống",["Fish"]="Câu cá",["Hunt"]="Săn",["Hunting"]="Săn bắn",
+["Track"]="Theo dõi",["Trap"]="Đặt bẫy",["Gather"]="Thu thập",
+["Collect"]="Thu thập",["Take"]="Lấy",["Give"]="Cho",["Get"]="Nhận",
+["Receive"]="Nhận",["Grab"]="Chộp",["Carry"]="Mang",["Lift"]="Nâng",
+["Throw"]="Ném",["Toss"]="Ném nhẹ",["Push"]="Đẩy",["Pull"]="Kéo",
 ["Go"]="Đi",["Come"]="Đến",["Leave"]="Rời",["Arrive"]="Đến",["Stay"]="Ở lại",
 ["Follow"]="Theo",["Lead"]="Dẫn",["Chase"]="Đuổi",["Flee"]="Chạy trốn",
-["Escape"]="Trốn",["Seek"]="Tìm",["Look"]="Nhìn",["See"]="Thấy",["Watch"]="Xem",
-["Listen"]="Nghe",["Hear"]="Nghe thấy",["Speak"]="Nói",["Talk"]="Nói chuyện",
-["Shout"]="Hét",["Whisper"]="Thì thầm",["Read"]="Đọc",["Write"]="Viết",
-["Draw"]="Vẽ",["Sing"]="Hát",["Dance"]="Nhảy múa",["Laugh"]="Cười",
-["Cry"]="Khóc",["Smile"]="Cười",["Think"]="Suy nghĩ",["Dream"]="Mơ",
--- Trạng thái
-["Active"]="Hoạt động",["Inactive"]="Không hoạt động",["Working"]="Đang hoạt động",
-["Broken"]="Hỏng",["Damaged"]="Bị hỏng",["Destroyed"]="Đã phá hủy",
-["Full"]="Đầy",["Empty"]="Trống",["Complete"]="Hoàn chỉnh",
-["Perfect"]="Hoàn hảo",["Hidden"]="Ẩn",["Visible"]="Hiện",["Secret"]="Bí mật",
-["Public"]="Công khai",["Private"]="Riêng tư",["Cursed"]="Bị nguyền",
-["Blessed"]="Được ban phước",["Sacred"]="Thiêng liêng",["Holy"]="Thánh",
-["Evil"]="Ác",["Chaos"]="Hỗn mang",["Balance"]="Cân bằng",
--- Phương hướng
-["North"]="Bắc",["South"]="Nam",["East"]="Đông",["West"]="Tây",
-["Northeast"]="Đông Bắc",["Northwest"]="Tây Bắc",["Southeast"]="Đông Nam",
-["Southwest"]="Tây Nam",["Up"]="Lên",["Down"]="Xuống",["Left"]="Trái",
-["Right"]="Phải",["Front"]="Trước",["Behind"]="Sau",["Inside"]="Trong",
-["Outside"]="Ngoài",["Top"]="Trên",["Bottom"]="Dưới",["Here"]="Ở đây",
-["There"]="Ở kia",["Everywhere"]="Mọi nơi",["Before"]="Trước",["After"]="Sau",
--- Vũ khí
-["Longsword"]="Trường kiếm",["Katana"]="Katana",["Rapier"]="Kiếm mảnh",
-["Claymore"]="Kiếm hai tay",["Greatsword"]="Đại kiếm",["Battle Axe"]="Rìu chiến",
-["Halberd"]="Kích",["Lance"]="Thương",["Trident"]="Đinh ba",["Mace"]="Chùy",
-["Warhammer"]="Búa chiến",["Crossbow"]="Nỏ",["Revolver"]="Súng ổ xoay",
-["SMG"]="Súng tiểu liên",["LMG"]="Súng máy",["Rocket Launcher"]="Súng phóng tên lửa",
-["Flamethrower"]="Súng phun lửa",["Cannon"]="Đại bác",["Grenade"]="Lựu đạn",
-["Bomb"]="Bom",["Mine"]="Mìn",["Missile"]="Tên lửa",
--- Giáp
-["Chainmail"]="Giáp xích",["Leather Armor"]="Giáp da",["Helm"]="Mũ giáp",
-["Crown"]="Vương miện",["Hood"]="Mũ trùm",["Buckler"]="Khiên nhỏ",
-["Chestplate"]="Giáp ngực",["Leggings"]="Giáp chân",["Gauntlets"]="Găng tay sắt",
-["Gloves"]="Găng tay",["Boots"]="Ủng",["Belt"]="Đai",["Robe"]="Áo choàng dài",
-["Cloak"]="Áo choàng",["Cape"]="Áo choàng ngắn",["Shirt"]="Áo sơ mi",
-["Pants"]="Quần",["Dress"]="Váy",["Shoes"]="Giày",
--- Trang sức
-["Ring"]="Nhẫn",["Necklace"]="Dây chuyền",["Bracelet"]="Vòng tay",
-["Earring"]="Khuyên tai",["Amulet"]="Bùa",["Talisman"]="Bùa hộ mệnh",
-["Charm"]="Bùa may mắn",["Accessory"]="Phụ kiện",
--- Khái niệm
-["Life"]="Cuộc sống",["Death"]="Cái chết",["Soul"]="Linh hồn",
-["Mind"]="Tâm trí",["Body"]="Cơ thể",["Heart"]="Trái tim",["Blood"]="Máu",
-["Bone"]="Xương",["Love"]="Tình yêu",["Hate"]="Thù hận",["Fear"]="Nỗi sợ",
-["Courage"]="Lòng can đảm",["Honor"]="Danh dự",["Loyalty"]="Trung thành",
-["Trust"]="Tin tưởng",["Hope"]="Hy vọng",["Despair"]="Tuyệt vọng",
-["Dream"]="Giấc mơ",["Nightmare"]="Ác mộng",["Reality"]="Thực tại",
-["Truth"]="Sự thật",["Lie"]="Lời nói dối",["Mystery"]="Bí ẩn",
-["Wisdom"]="Trí tuệ",["Knowledge"]="Kiến thức",["Weakness"]="Điểm yếu",
-["Fate"]="Số phận",["Destiny"]="Định mệnh",["Infinity"]="Vô cực",
-["Eternity"]="Vĩnh cửu",
--- Tính từ
+["Escape"]="Trốn",["Seek"]="Tìm",["Look"]="Nhìn",["See"]="Thấy",
+["Watch"]="Xem",["Observe"]="Quan sát",["Listen"]="Nghe",["Hear"]="Nghe thấy",
+["Speak"]="Nói",["Talk"]="Nói chuyện",["Shout"]="Hét",["Whisper"]="Thì thầm",
+["Read"]="Đọc",["Write"]="Viết",["Draw"]="Vẽ",["Paint"]="Vẽ",["Sing"]="Hát",
+["Dance"]="Nhảy múa",["Laugh"]="Cười",["Cry"]="Khóc",["Smile"]="Cười",
+["Frown"]="Cau mày",["Think"]="Suy nghĩ",["Dream"]="Mơ",["Pray"]="Cầu nguyện",
+["Meditate"]="Thiền",["Attack"]="Tấn công",["Defend"]="Phòng thủ",
+["Block"]="Chặn",["Parry"]="Đỡ",["Dodge"]="Né",["Roll"]="Lăn",
+["Dash"]="Lao tới",["Charge"]="Xung phong",["Retreat"]="Rút lui",
+["Surrender"]="Đầu hàng",["Kill"]="Giết",["Slay"]="Giết",["Destroy Enemy"]="Diệt địch",
+-- ═══ TÍNH TỪ ═══
 ["Big"]="Lớn",["Small"]="Nhỏ",["Huge"]="Khổng lồ",["Tiny"]="Tí hon",
-["Long"]="Dài",["Short"]="Ngắn",["Tall"]="Cao",["Wide"]="Rộng",["Narrow"]="Hẹp",
-["Thick"]="Dày",["Thin"]="Mỏng",["Heavy"]="Nặng",["Strong"]="Mạnh",
-["Weak"]="Yếu",["Fast"]="Nhanh",["Slow"]="Chậm",["Quick"]="Nhanh",
-["Hot"]="Nóng",["Cold"]="Lạnh",["Warm"]="Ấm",["Cool"]="Mát",["Sharp"]="Sắc",
-["Dull"]="Cùn",["Smooth"]="Mịn",["Rough"]="Nhám",["Soft"]="Mềm",["Hard"]="Cứng",
-["Fresh"]="Tươi",["Clean"]="Sạch",["Dirty"]="Bẩn",["Clear"]="Rõ",
-["Loud"]="To",["Quiet"]="Im lặng",["Calm"]="Bình tĩnh",["Wild"]="Hoang dã",
-["Crazy"]="Điên",["Smart"]="Thông minh",["Dumb"]="Ngu",["Wise"]="Khôn ngoan",
-["Clever"]="Khéo léo",
--- Khác
-["Maybe"]="Có lẽ",["Sure"]="Chắc chắn",["Of Course"]="Tất nhiên",
-["Definitely"]="Chắc chắn",["Absolutely"]="Hoàn toàn",["Nothing"]="Không có gì",
-["Something"]="Cái gì đó",["Everything"]="Mọi thứ",["Someone"]="Ai đó",
-["Everyone"]="Mọi người",["Nobody"]="Không ai",["Excuse Me"]="Xin lỗi",
-["Good Morning"]="Chào buổi sáng",["Good Afternoon"]="Chào buổi chiều",
-["Good Evening"]="Chào buổi tối",["Good Night"]="Chúc ngủ ngon",
-["How Are You"]="Bạn khỏe không",["I'm Fine"]="Tôi khỏe",
-["Nice to Meet You"]="Rất vui được gặp",["See You Later"]="Hẹn gặp lại",
-["Take Care"]="Bảo trọng",
+["Giant"]="Khổng lồ",["Long"]="Dài",["Short"]="Ngắn",["Tall"]="Cao",
+["Wide"]="Rộng",["Narrow"]="Hẹp",["Thick"]="Dày",["Thin"]="Mỏng",
+["Heavy"]="Nặng",["Light"]="Nhẹ",["Strong"]="Mạnh",["Weak"]="Yếu",
+["Fast"]="Nhanh",["Slow"]="Chậm",["Quick"]="Nhanh",["Hot"]="Nóng",
+["Cold"]="Lạnh",["Warm"]="Ấm",["Cool"]="Mát",["Freezing"]="Đóng băng",
+["Burning"]="Cháy",["Sharp"]="Sắc",["Dull"]="Cùn",["Smooth"]="Mịn",
+["Rough"]="Nhám",["Soft"]="Mềm",["Hard"]="Cứng",["Fresh"]="Tươi",
+["Stale"]="Cũ",["Clean"]="Sạch",["Dirty"]="Bẩn",["Tainted"]="Ô uế",
+["Clear"]="Rõ",["Blurry"]="Mờ",["Loud"]="To",["Quiet"]="Im lặng",
+["Silent"]="Yên tĩnh",["Noisy"]="Ồn ào",["Peaceful"]="Yên bình",
+["Calm"]="Bình tĩnh",["Wild"]="Hoang dã",["Tame"]="Thuần",["Crazy"]="Điên",
+["Sane"]="Tỉnh táo",["Smart"]="Thông minh",["Dumb"]="Ngu",
+["Wise"]="Khôn ngoan",["Foolish"]="Ngốc",["Clever"]="Khéo léo",
+["Beautiful"]="Đẹp",["Ugly"]="Xấu",["Pretty"]="Xinh",["Handsome"]="Đẹp trai",
+["Cute"]="Dễ thương",["Scary"]="Đáng sợ",["Creepy"]="Rùng rợn",
+["Cool"]="Ngầu",["Lame"]="Nhạt",["Common"]="Phổ thông",["Unique"]="Độc đáo",
+["Special"]="Đặc biệt",["Rare"]="Hiếm",["Normal"]="Bình thường",
+["Strange"]="Lạ",["Weird"]="Kỳ lạ",["Funny"]="Buồn cười",
+["Serious"]="Nghiêm túc",["Silly"]="Ngớ ngẩn",["Formal"]="Trang trọng",
+["Casual"]="Thường",["Fancy"]="Sang trọng",["Simple"]="Đơn giản",
+["Complex"]="Phức tạp",["Difficult"]="Khó",["Easy"]="Dễ",["Impossible"]="Bất khả thi",
+["Possible"]="Có thể",["Likely"]="Có khả năng",["Unlikely"]="Không chắc",
 }
 
 -- ═══════════════════════════════════════════════════════════
@@ -353,16 +569,14 @@ local function dich(text)
     return kq
 end
 
--- ═══════════════════════════════════════════════════════════
---   DỊCH OBJECT
--- ═══════════════════════════════════════════════════════════
+-- ═══════════ DỊCH OBJECT ═══════════
 local function dichObject(obj)
     if not (obj:IsA("TextLabel") or obj:IsA("TextButton") 
         or obj:IsA("TextBox") or obj:IsA("Text")) then return end
-    if not obj:GetAttribute("ChuGoc") then
-        obj:SetAttribute("ChuGoc", obj.Text)
+    if not obj:GetAttribute("Goc") then
+        obj:SetAttribute("Goc", obj.Text)
     end
-    local goc = obj:GetAttribute("ChuGoc")
+    local goc = obj:GetAttribute("Goc")
     if not goc or goc == "" or obj:GetAttribute("DaDich") then return end
     local banDich = dich(goc)
     if banDich ~= goc then
@@ -371,278 +585,15 @@ local function dichObject(obj)
     end
 end
 
-local function hoanTac()
-    for _, obj in ipairs(game:GetDescendants()) do
-        if obj:IsA("TextLabel") or obj:IsA("TextButton") 
-        or obj:IsA("TextBox") or obj:IsA("Text") then
-            local goc = obj:GetAttribute("ChuGoc")
-            if goc then
-                obj.Text = goc
-                obj:SetAttribute("DaDich", nil)
-            end
-        end
-    end
+-- Quét toàn bộ game
+for _, obj in ipairs(game:GetDescendants()) do
+    dichObject(obj)
 end
 
--- ═══════════════════════════════════════════════════════════
---   MÀU SẮC
--- ═══════════════════════════════════════════════════════════
-local MAU = {
-    Nen = Color3.fromRGB(24, 24, 32),
-    Panel = Color3.fromRGB(34, 34, 45),
-    Chinh = Color3.fromRGB(88, 101, 242),
-    ChinhHover = Color3.fromRGB(108, 121, 255),
-    ThanhCong = Color3.fromRGB(87, 242, 135),
-    Chu = Color3.fromRGB(255, 255, 255),
-    ChuMo = Color3.fromRGB(160, 160, 175),
-}
-
--- ═══════════════════════════════════════════════════════════
---   TẠO UI
--- ═══════════════════════════════════════════════════════════
-local oldGui = playerGui:FindFirstChild("UIDichChu")
-if oldGui then oldGui:Destroy() end
-
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "UIDichChu"
-screenGui.ResetOnSpawn = false
-screenGui.Parent = playerGui
-
--- Nút mở
-local nutMo = Instance.new("TextButton")
-nutMo.Size = UDim2.new(0, 55, 0, 55)
-nutMo.Position = UDim2.new(0, 20, 0.5, -27)
-nutMo.BackgroundColor3 = MAU.Chinh
-nutMo.Text = "🇻🇳"
-nutMo.TextSize = 26
-nutMo.Font = Enum.Font.GothamBold
-nutMo.AutoButtonColor = false
-nutMo.Parent = screenGui
-
-local c1 = Instance.new("UICorner")
-c1.CornerRadius = UDim.new(1, 0)
-c1.Parent = nutMo
-
-local s1 = Instance.new("UIStroke")
-s1.Color = MAU.ChinhHover
-s1.Thickness = 2
-s1.Parent = nutMo
-
--- Khung chính
-local khung = Instance.new("Frame")
-khung.Size = UDim2.new(0, 360, 0, 290)
-khung.Position = UDim2.new(0.5, -180, 0.5, -145)
-khung.BackgroundColor3 = MAU.Nen
-khung.BorderSizePixel = 0
-khung.Visible = false
-khung.Active = true
-khung.Draggable = true
-khung.Parent = screenGui
-
-local c2 = Instance.new("UICorner")
-c2.CornerRadius = UDim.new(0, 14)
-c2.Parent = khung
-
-local s2 = Instance.new("UIStroke")
-s2.Color = MAU.Chinh
-s2.Thickness = 1.5
-s2.Transparency = 0.3
-s2.Parent = khung
-
--- Header
-local header = Instance.new("TextLabel")
-header.Size = UDim2.new(1, 0, 0, 50)
-header.BackgroundColor3 = MAU.Panel
-header.Text = "🇻🇳  Dịch chữ sang tiếng Việt"
-header.TextColor3 = MAU.Chu
-header.Font = Enum.Font.GothamBold
-header.TextSize = 16
-header.Parent = khung
-
-local c3 = Instance.new("UICorner")
-c3.CornerRadius = UDim.new(0, 14)
-c3.Parent = header
-
-local fix = Instance.new("Frame")
-fix.Size = UDim2.new(1, 0, 0, 15)
-fix.Position = UDim2.new(0, 0, 1, -15)
-fix.BackgroundColor3 = MAU.Panel
-fix.BorderSizePixel = 0
-fix.Parent = header
-
--- Nút đóng
-local nutDong = Instance.new("TextButton")
-nutDong.Size = UDim2.new(0, 30, 0, 30)
-nutDong.Position = UDim2.new(1, -40, 0.5, -15)
-nutDong.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
-nutDong.Text = "✕"
-nutDong.TextColor3 = MAU.Chu
-nutDong.Font = Enum.Font.GothamBold
-nutDong.TextSize = 14
-nutDong.AutoButtonColor = false
-nutDong.Parent = header
-
-local c4 = Instance.new("UICorner")
-c4.CornerRadius = UDim.new(1, 0)
-c4.Parent = nutDong
-
--- Info
-local thongTin = Instance.new("TextLabel")
-thongTin.Size = UDim2.new(1, -40, 0, 25)
-thongTin.Position = UDim2.new(0, 20, 0, 60)
-thongTin.BackgroundTransparency = 1
-thongTin.Text = "📚 Từ điển: " .. #dsTu .. " từ | Không cần HTTP"
-thongTin.TextColor3 = MAU.ChuMo
-thongTin.Font = Enum.Font.Gotham
-thongTin.TextSize = 13
-thongTin.TextXAlignment = Enum.TextXAlignment.Left
-thongTin.Parent = khung
-
--- Nút DỊCH
-local nutDich = Instance.new("TextButton")
-nutDich.Size = UDim2.new(1, -40, 0, 45)
-nutDich.Position = UDim2.new(0, 20, 0, 95)
-nutDich.BackgroundColor3 = MAU.Chinh
-nutDich.Text = "🔤  DỊCH TOÀN BỘ GAME"
-nutDich.TextColor3 = MAU.Chu
-nutDich.Font = Enum.Font.GothamBold
-nutDich.TextSize = 15
-nutDich.AutoButtonColor = false
-nutDich.Parent = khung
-
-local c5 = Instance.new("UICorner")
-c5.CornerRadius = UDim.new(0, 10)
-c5.Parent = nutDich
-
--- Nút HOÀN TÁC
-local nutHoanTac = Instance.new("TextButton")
-nutHoanTac.Size = UDim2.new(1, -40, 0, 45)
-nutHoanTac.Position = UDim2.new(0, 20, 0, 150)
-nutHoanTac.BackgroundColor3 = Color3.fromRGB(60, 60, 75)
-nutHoanTac.Text = "↩️  HOÀN TÁC"
-nutHoanTac.TextColor3 = MAU.Chu
-nutHoanTac.Font = Enum.Font.GothamBold
-nutHoanTac.TextSize = 15
-nutHoanTac.AutoButtonColor = false
-nutHoanTac.Parent = khung
-
-local c6 = Instance.new("UICorner")
-c6.CornerRadius = UDim.new(0, 10)
-c6.Parent = nutHoanTac
-
--- Nút tự động
-local nutTuDong = Instance.new("TextButton")
-nutTuDong.Size = UDim2.new(1, -40, 0, 40)
-nutTuDong.Position = UDim2.new(0, 20, 0, 205)
-nutTuDong.BackgroundColor3 = Color3.fromRGB(60, 60, 75)
-nutTuDong.Text = "🔄  TỰ ĐỘNG DỊCH: BẬT"
-nutTuDong.TextColor3 = MAU.Chu
-nutTuDong.Font = Enum.Font.GothamBold
-nutTuDong.TextSize = 14
-nutTuDong.AutoButtonColor = false
-nutTuDong.Parent = khung
-
-local c7 = Instance.new("UICorner")
-c7.CornerRadius = UDim.new(0, 10)
-c7.Parent = nutTuDong
-
--- Trạng thái
-local trangThai = Instance.new("TextLabel")
-trangThai.Size = UDim2.new(1, -40, 0, 25)
-trangThai.Position = UDim2.new(0, 20, 0, 255)
-trangThai.BackgroundTransparency = 1
-trangThai.Text = "Sẵn sàng"
-trangThai.TextColor3 = MAU.ChuMo
-trangThai.Font = Enum.Font.Gotham
-trangThai.TextSize = 13
-trangThai.TextXAlignment = Enum.TextXAlignment.Left
-trangThai.Parent = khung
-
--- Hover
-local function hover(nut, m1, m2)
-    nut.MouseEnter:Connect(function()
-        TweenService:Create(nut, TweenInfo.new(0.15), {BackgroundColor3 = m2}):Play()
-    end)
-    nut.MouseLeave:Connect(function()
-        TweenService:Create(nut, TweenInfo.new(0.15), {BackgroundColor3 = m1}):Play()
-    end)
-end
-
-hover(nutMo, MAU.Chinh, MAU.ChinhHover)
-hover(nutDich, MAU.Chinh, MAU.ChinhHover)
-hover(nutHoanTac, Color3.fromRGB(60,60,75), Color3.fromRGB(80,80,100))
-hover(nutTuDong, Color3.fromRGB(60,60,75), Color3.fromRGB(80,80,100))
-hover(nutDong, Color3.fromRGB(255,80,80), Color3.fromRGB(255,110,110))
-
--- Mở/đóng
-local dangMo = false
-local function batTat()
-    dangMo = not dangMo
-    if dangMo then
-        khung.Visible = true
-        khung.Size = UDim2.new(0, 0, 0, 0)
-        khung.Position = UDim2.new(0.5, 0, 0.5, 0)
-        TweenService:Create(khung, TweenInfo.new(0.3, Enum.EasingStyle.Back), {
-            Size = UDim2.new(0, 360, 0, 290),
-            Position = UDim2.new(0.5, -180, 0.5, -145)
-        }):Play()
-    else
-        local t = TweenService:Create(khung, TweenInfo.new(0.2), {
-            Size = UDim2.new(0, 0, 0, 0),
-            Position = UDim2.new(0.5, 0, 0.5, 0)
-        })
-        t:Play()
-        t.Completed:Connect(function() khung.Visible = false end)
-    end
-end
-
-nutMo.MouseButton1Click:Connect(batTat)
-nutDong.MouseButton1Click:Connect(batTat)
-
--- Dịch
-nutDich.MouseButton1Click:Connect(function()
-    trangThai.Text = "⏳ Đang dịch..."
-    trangThai.TextColor3 = MAU.ChinhHover
-    task.spawn(function()
-        local dem = 0
-        for _, obj in ipairs(game:GetDescendants()) do
-            if obj:IsA("TextLabel") or obj:IsA("TextButton") 
-            or obj:IsA("TextBox") or obj:IsA("Text") then
-                dichObject(obj)
-                dem = dem + 1
-            end
-        end
-        task.wait(0.3)
-        trangThai.Text = "✅ Đã quét " .. dem .. " chữ!"
-        trangThai.TextColor3 = MAU.ThanhCong
-    end)
-end)
-
--- Hoàn tác
-nutHoanTac.MouseButton1Click:Connect(function()
-    hoanTac()
-    trangThai.Text = "↩️ Đã khôi phục chữ gốc"
-    trangThai.TextColor3 = MAU.ChinhHover
-end)
-
--- Tự động
-local tuDong = true
-nutTuDong.MouseButton1Click:Connect(function()
-    tuDong = not tuDong
-    nutTuDong.Text = tuDong and "🔄  TỰ ĐỘNG DỊCH: BẬT" or "🔄  TỰ ĐỘNG DỊCH: TẮT"
-end)
-
+-- Tự động dịch object mới
 game.DescendantAdded:Connect(function(obj)
-    if not tuDong then return end
-    task.wait(0.2)
+    task.wait(0.1)
     dichObject(obj)
 end)
 
-UserInputService.InputBegan:Connect(function(input, gp)
-    if gp then return end
-    if input.KeyCode == Enum.KeyCode.RightControl then
-        batTat()
-    end
-end)
-
-print("✅ [Dịch Chữ VN] Đã load! Từ điển: " .. #dsTu .. " từ")
+print("✅ Đã tự động dịch sang tiếng Việt! (" .. #dsTu .. " từ)")
